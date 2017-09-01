@@ -1,0 +1,24 @@
+<!-- Navbar -->
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <!-- Navbar Header-->
+      <li class="nav-header">
+        <div class="profile-element">
+          <img class = "logo" src="./assets/images/logo2.png">
+          <h3 class="extra-margin-top white-text text-center">Sistema de Alerta Temprana</h3>
+        </div>
+        <div class="logo-element">
+         Menú
+        </div>
+      </li>
+      <!-- End Navbar Header -->
+      <!-- Navbar Items -->
+      <li [ngClass]="{active: activeRoute('estadisticas')||activeRoute('matricula_general')||activeRoute('matricula')}">
+        <a [routerLink]="['/plataforma/estadisticas']"><i class="fa fa-bar-chart"></i> <span class="nav-label">Reportes Estadísticos</span></a>
+      </li>
+      <!-- End Navbar Items -->
+    </ul>
+  </div>
+</nav>
+<!-- End Navbar -->

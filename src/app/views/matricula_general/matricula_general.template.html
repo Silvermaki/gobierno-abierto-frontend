@@ -1,0 +1,258 @@
+<!-- Page Header -->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2><i class="fa fa-bar-chart"></i> <b>Matrícula General</b></h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                Reporte estadístico de Matrícula General Inicial.
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Page Header -->
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-12 well white-bg animated fadeInRight text-center">
+                <a (click)="open_matricula_modal()" class="btn btn-primary btn-lg"><i class="fa fa-table"></i> Generar Reporte </a>
+            </div>
+
+            <div class="col-md-12 well white-bg" *ngIf="reporte_generado_valido">
+                <h2 class="font-bold m-b-xs text-center">
+                    Reporte de Matrícula General
+                </h2>
+
+                <hr>
+                <!-- No Requests -->
+                <h3 class="text-danger text-center" *ngIf="results.length == 0">No existen registros que cumplan con las especificaciones seleccionadas en el reporte.</h3>
+                
+                <div class="table-responsive extra-margin-top" *ngIf="results.length > 0">
+                    <!-- Request Table -->
+                    <table datatable [dtOptions]="dtoptions" id="tabla_reporte_matricula" class="table table-bordered table-hover">
+                        <!-- Request Table Headers -->
+                        <thead>
+                            <tr>
+                                <th class="text-center info">Alcance del Reporte</th>
+                                <th colspan="3" class="text-center info">Prebásica</th>
+                                <th colspan="3" class="text-center info">Básica</th>
+                                <th colspan="3" class="text-center info">Media</th>
+                                <th class="text-center info">Totales</th>
+
+                            </tr>
+                            <tr>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'NACIONAL'">Departamento</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'DEPARTAMENTO'">Municipio</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'MUNICIPIO'">Aldea</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'ALDEA'">Centro Educativo</th>
+                                <th class="text-center">F</th>
+                                <th class="text-center">M</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">F</th>
+                                <th class="text-center">M</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">F</th>
+                                <th class="text-center">M</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'NACIONAL'">Total Departamental</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'DEPARTAMENTO'">Total Municipio</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'MUNICIPIO'">Total Aldea</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'ALDEA'">Total Centro</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <td class="text-center warning"><b>Total</b></td>
+                            <td class="text-center warning">{{totales.prebasica_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.prebasica_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.prebasica_f + totales.prebasica_m).toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.basica_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.basica_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.basica_f + totales.basica_m).toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.media_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.media_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.media_f + totales.media_m).toLocaleString()}}</td>
+                            <td class="text-center warning"><b>{{(totales.basica_f + totales.basica_m + totales.prebasica_f + totales.prebasica_m + totales.media_f + totales.media_m).toLocaleString()}}</b></td>
+                        </tr>
+                        </tfoot>
+                        <!-- End Request Table Headers -->
+                        <!-- Request Table Body-->
+                        <tbody>
+                            <tr *ngFor = "let result of results">
+                                <td class="text-center">{{result.value}}</td>
+                                <td class="text-center">{{result.prebasica_f.toLocaleString()}}</td>
+                                <td class="text-center">{{result.prebasica_m.toLocaleString()}}</td>
+                                <td class="text-center">{{(result.prebasica_f+result.prebasica_m).toLocaleString()}}</td>
+                                <td class="text-center">{{result.basica_f.toLocaleString()}}</td>
+                                <td class="text-center">{{result.basica_m.toLocaleString()}}</td>
+                                <td class="text-center">{{(result.basica_f+result.basica_m).toLocaleString()}}</td>
+                                <td class="text-center">{{result.media_f.toLocaleString()}}</td>
+                                <td class="text-center">{{result.media_m.toLocaleString()}}</td>
+                                <td class="text-center">{{(result.media_f+result.media_m).toLocaleString()}}</td>
+                                <td class="text-center warning">{{(result.prebasica_f + result.prebasica_m + result.media_f + result.media_m + result.basica_f + result.basica_m).toLocaleString()}}</td>
+                            </tr>
+                            
+                        </tbody>
+                        <!-- End Request Table Body-->
+                        
+                    </table>
+                    <div class="pull-right">
+                            <a id="download_excel" (click)="export_excel('tabla_reporte_matricula','reporte')" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Exportar a Excel </a>
+                            <a id="download_csv" (click)="export_csv(results)" class="btn btn-info"><i class="fa fa-file-code-o"></i> Exportar a CSV </a>
+                    </div>
+                    <!-- End Request Table -->
+                </div>
+            </div>
+            <div class="col-md-12 well white-bg animated fadeInRight" *ngIf="!reporte_generado_valido">
+                <h3 class="font-bold m-b-xs text-center">
+                    Haga clic en Generar Reporte y seleccione que datos desea desplegar.
+                </h3>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div bsModal #matricula_general_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-center"><strong>Reporte de Matrícula General</strong></h2>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="filter_form" role="form" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3>1. Generales</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label>Alcance del Reporte *</label>
+                                <div class = "input-group" [ngClass]="{'has-error':!filter_form.controls['alcance'].valid && reporte_generado, 'has-success':filter_form.controls['alcance'].valid && reporte_generado}">
+                                    <select  [formControl]="filter_form.controls['alcance']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let alcance of alcances" [ngValue]="alcance">{{alcance}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-danger" *ngIf="!filter_form.controls['alcance'].valid && reporte_generado">El alcance es requerido.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label>Periodo *</label>
+                                <div class = "input-group" [ngClass]="{'has-error':!filter_form.controls['periodo'].valid && reporte_generado, 'has-success':filter_form.controls['periodo'].valid && reporte_generado}">
+                                    <select [formControl]="filter_form.controls['periodo']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let periodo of periodos" [ngValue]="periodo">{{periodo.periodo_id}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-danger" *ngIf="!filter_form.controls['periodo'].valid && reporte_generado">El periodo es requerido.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label>Tipo de Administración</label>
+                                <div class = "input-group" [ngClass]="{'has-error':!filter_form.controls['administracion'].valid && reporte_generado, 'has-success':filter_form.controls['administracion'].valid && reporte_generado}">
+                                    <select [formControl]="filter_form.controls['administracion']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let administracion of administraciones" [ngValue]="administracion">{{administracion.administracion}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="filter_form.controls['alcance'].value == 'DEPARTAMENTO'||filter_form.controls['alcance'].value == 'MUNICIPIO'||filter_form.controls['alcance'].value == 'ALDEA'">
+                        <div class="col-xs-12 extra-margin-top animated fadeIn">
+                            <h3>2. Localidad</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 animated fadeIn" *ngIf="filter_form.controls['alcance'].value == 'DEPARTAMENTO'||filter_form.controls['alcance'].value == 'MUNICIPIO'||filter_form.controls['alcance'].value == 'ALDEA'">
+                            <div class="form-group" [ngClass]="{'has-error':!filter_form.controls['departamento'].valid && reporte_generado, 'has-success':filter_form.controls['departamento'].valid && reporte_generado}">
+                                <label>Departamento *</label>
+                                <div class = "input-group">
+                                    <select [formControl]="filter_form.controls['departamento']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let depto of departamentos" [ngValue]="depto">{{depto.departamento}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-danger" *ngIf="!filter_form.controls['departamento'].valid && reporte_generado">El departamento es requerido.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 animated fadeIn" *ngIf="filter_form.controls['alcance'].value == 'MUNICIPIO'||filter_form.controls['alcance'].value == 'ALDEA'">
+                            <div class="form-group" [ngClass]="{'has-error':!filter_form.controls['municipio'].valid && reporte_generado, 'has-success':filter_form.controls['municipio'].valid && reporte_generado}">
+                                <label>Municipio *</label>
+                                <div class = "input-group">
+                                    <select [formControl]="filter_form.controls['municipio']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let municipio of municipios" [ngValue]="municipio">{{municipio.municipio}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-danger" *ngIf="!filter_form.controls['municipio'].valid && reporte_generado">El municipio es requerido.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 animated fadeIn" *ngIf="filter_form.controls['alcance'].value == 'ALDEA'">
+                            <div class="form-group" [ngClass]="{'has-error':!filter_form.controls['aldea'].valid && reporte_generado, 'has-success':filter_form.controls['aldea'].valid && reporte_generado}">
+                                <label>Aldea *</label>
+                                <div class = "input-group">
+                                    <select [formControl]="filter_form.controls['aldea']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let aldea of aldeas" [ngValue]="aldea">{{aldea.aldea}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                </div>
+                            </div>
+                            <p class="text-danger" *ngIf="!filter_form.controls['aldea'].valid && reporte_generado">La aldea es requerida.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 extra-margin-top">
+                            <h3 *ngIf="filter_form.controls['alcance'].value == 'DEPARTAMENTO'||filter_form.controls['alcance'].value == 'MUNICIPIO'||filter_form.controls['alcance'].value == 'ALDEA'">3. Nivel Educativo</h3>
+                            <h3 *ngIf="filter_form.controls['alcance'].value != 'DEPARTAMENTO' && filter_form.controls['alcance'].value != 'MUNICIPIO' && filter_form.controls['alcance'].value != 'ALDEA'">2. Nivel Educativo</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label>Nivel Educativo</label>
+                                <div class = "input-group" [ngClass]="{'has-error':!filter_form.controls['nivel'].valid && reporte_generado, 'has-success':filter_form.controls['nivel'].valid && reporte_generado}">
+                                    <select [formControl]="filter_form.controls['nivel']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let nivel of niveles" [ngValue]="nivel">{{nivel.nivel}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="form-group" [ngClass]="{'has-error':!filter_form.controls['subnivel'].valid && reporte_generado, 'has-success':filter_form.controls['subnivel'].valid && reporte_generado}">
+                                <label>Sub-Nivel</label>
+                                <div class = "input-group">
+                                    <select [formControl]="filter_form.controls['subnivel']" class="form-control">
+                                        <option value="" selected>Seleccione una opción...</option>
+                                        <option *ngFor="let subnivel of subniveles" [ngValue]="subnivel">{{subnivel.nombre}}</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row extra-margin-top30">
+                    <div class="col-xs-12">
+                        <p class="blue-text">Todos los campos marcados por un * son requeridos.</p>
+                        <p class="blue-text">El reporte mostrará todos los resultados de cualquier campo donde no se especifique una opción.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class = "col-xs-6 extra-padding-top">
+                        <button (click)="matricula_general_modal.hide()" class="btn btn-danger logo"><i class="fa fa-close"></i> Cancelar</button>
+                    </div>
+                    <div class = "col-xs-6 extra-padding-top">
+                        <button [disabled]="reporte_generado && !filter_form.valid" (click)="aplicar_filtro()" class="btn btn-primary logo"><i class="fa fa-table"></i> Generar Reporte</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
