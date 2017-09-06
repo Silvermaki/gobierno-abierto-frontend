@@ -13,6 +13,9 @@
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
+      ],
+      "@agm/*": [
+        "../node_modules/@agm/*"
       ]
     },
     "outDir": "../out-tsc/app",

@@ -14,8 +14,11 @@
       </li>
       <!-- End Navbar Header -->
       <!-- Navbar Items -->
-      <li [ngClass]="{active: activeRoute('estadisticas')||activeRoute('matricula_general')||activeRoute('matricula')}">
+      <li [ngClass]="{active: activeRoute('estadisticas')||activeRoute('matricula_general')||activeRoute('matricula')|| activeRoute('empty')|| activeRoute('rendimiento')}">
         <a [routerLink]="['/plataforma/estadisticas']"><i class="fa fa-bar-chart"></i> <span class="nav-label">Reportes Estadísticos</span></a>
+      </li>
+      <li [ngClass]="{active: activeRoute('buscar_centro')||activeRoute('filtrar_centro')||activeRoute('mapa_centros')|| activeRoute('ficha_centro')}">
+        <a [routerLink]="['/plataforma/buscar_centro']"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Ficha Centro Educativo</span></a>
       </li>
       <!-- End Navbar Items -->
     </ul>

@@ -93,6 +93,10 @@ export class MatriculaGeneralComponent implements OnInit{
 
     }
 
+    ngAfterViewInit(){
+        this.MatriculaGeneralModal.show();
+    }
+
     ngOnInit() {
         this.get_periodos();
         this.get_departamentos();

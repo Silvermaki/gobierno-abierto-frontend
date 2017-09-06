@@ -1,0 +1,70 @@
+<!-- Page Header -->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2><i class="fa fa-map"></i> <b>Búsqueda de Centro Educativo por Mapa</b></h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                Busca la ficha de un Centro Educativo específico por medio de sus coordenadas dentro de un mapa virtual interactivo.
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Page Header -->
+<div class="wrapper wrapper-content fadeInRight">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-7 well white-bg">
+                <agm-map class="mapa-centro" [latitude]="lat" [longitude]="lng" [streetViewControl]="false" [zoom]="zoom" [clickableIcons] = "false" [minZoom]="min_zoom" [maxZoom]="max_zoom" (zoomChange)="set_zoom($event)" >
+                  <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="current_marker_url" [zIndex]="1000000">
+                  </agm-marker>
+                  <agm-marker *ngFor = "let centro of centros_educativos" [title]="centro.nombre_centro" [latitude]="centro.lat" [longitude]="centro.lon" [iconUrl]="marker_url" (markerClick)="set_info(centro)" [visible]="current_zoom>8">
+                  </agm-marker>
+                </agm-map>
+            </div>
+            <div class="col-md-5 well white-bg">
+                <div class="mapa-centro">
+                    <div *ngIf="!marker_clicked">
+                        <p class="font-bold m-b-xs text-center navy-code big-text">Haga clic en un Centro Educativo para ver su información.</p>
+                    </div>
+                    <div *ngIf="marker_clicked">
+                        <div class="col-xs-12">
+                            <p class="font-bold m-b-xs text-center navy-code big-text"><i class="fa fa-graduation-cap"></i> Centro Educativo</p>
+                            <p class="m-b-xs text-center">{{centro_seleccionado.nombre}}</p>
+                        </div>
+                        <div class="form-group col-lg-6 extra-padding-top10">
+                            <label>Código</label>
+                            <div class = "input-group">
+                                <input  type="text" class="form-control input-sm" value="{{centro_seleccionado.codigo}}" readonly="true">
+                                <span class="input-group-addon"><i class="fa fa-codepen"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 extra-padding-top10">
+                            <label>Teléfono</label>
+                            <div class = "input-group">
+                                <input  type="text" class="form-control input-sm" value="{{centro_seleccionado.tel}}" readonly="true">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 extra-padding-top10">
+                            <label>Administración</label>
+                            <div class = "input-group">
+                                <input  type="text" class="form-control input-sm" value="{{centro_seleccionado.administracion}}" readonly="true">
+                                <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 extra-padding-top10">
+                            <label>Zona</label>
+                            <div class = "input-group">
+                                <input  type="text" class="form-control input-sm" value="{{centro_seleccionado.zona}}" readonly="true">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 extra-padding-top20">
+                            <a target="_blank" type="button" class="btn btn btn-primary logo" [routerLink]="['/plataforma/ficha_centro', centro_seleccionado.id]"><i class="fa fa-file"></i> <b> Ver Ficha de Centro</b></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

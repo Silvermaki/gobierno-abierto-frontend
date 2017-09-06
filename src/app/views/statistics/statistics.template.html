@@ -11,35 +11,32 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox product-detail">
-                <div class="ibox-content white-bg">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img class = "request-image" src="./assets/images/matricula_general.png">
-                        </div>
-                        <div class="col-md-9">
-                            <h2 class="font-bold m-b-xs">
-                                Reportes de Alumnos por Matrícula y Deserción
-                            </h2>
-                            <hr>
-                            <h4>Descripción</h4>
+            <div class="ibox product-detail" [routerLink]="['/plataforma/matricula']">
+                <div class="ibox-content hover-hand-border">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img class = "request-image" src="./assets/images/matricula_general.png">
+                            </div>
+                            <div class="col-md-9">
+                                <h2 class="font-bold m-b-xs">
+                                    Reportes de Alumnos por Matrícula y Deserción
+                                </h2>
+                                <hr>
+                                <h4>Descripción</h4>
 
-                            <div class="text-muted">
-                                Esta sección contiene los diferentes reportes que muestran el número de estudiantes que se matricularon en base a diferentes parámetros. 
-                            </div>
-                            <dl class="m-t-md">
-                                <dt>Reportes</dt>
-                                <dd>Matrícula General, Matrícula por Edades, Matrícula por Grado, Matrícula por Modalidad, Etc...</dd>
-                            </dl>
-                            <div>
-                                <a class="btn btn-primary btn-md pull-right" [routerLink]="['/plataforma/matricula']"><i class="fa fa-edit"></i> Ver Sección</a>
+                                <div class="text-muted">
+                                    Esta sección contiene los diferentes reportes que muestran el número de estudiantes que se matricularon en base a diferentes parámetros. 
+                                </div>
+                                <dl class="m-t-md">
+                                    <dt>Reportes</dt>
+                                    <dd>Matrícula General, Matrícula por Edades, Matrícula por Grado, Matrícula por Modalidad, Etc...</dd>
+                                </dl>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="ibox product-detail">
-                <div class="ibox-content white-bg">
+            <div class="ibox product-detail" [routerLink]="['/plataforma/rendimiento']">
+                <div class="ibox-content hover-hand-border">
                     <div class="row">
                         <div class="col-md-3">
                             <img class = "request-image" src="./assets/images/matricula_edades.png">
@@ -58,36 +55,6 @@
                                 <dt>Reportes</dt>
                                 <dd>Aprobación y Reprobación, Repitencia, Etc...</dd>
                             </dl>
-                            <div>
-                                <a class="btn btn-primary btn-md pull-right"><i class="fa fa-edit"></i> Ver Sección</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ibox product-detail">
-                <div class="ibox-content white-bg">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img class = "request-image" src="./assets/images/centro_educativo.png">
-                        </div>
-                        <div class="col-md-9">
-                            <h2 class="font-bold m-b-xs">
-                                Ficha de Centros Educativos
-                            </h2>
-                            <hr>
-                            <h4>Descripción</h4>
-
-                            <div class="text-muted">
-                                Esta sección muestras las fichas informativas segregadas por centro educativo en base a sus datos generales respectivos.
-                            </div>
-                            <dl class="m-t-md">
-                                <dt>Reportes</dt>
-                                <dd>Datos Generales, Ubicación, Zona, Administración, Niveles Educativos, Tipo de Centro, Infraestructura, Oferta, Etc...</dd>
-                            </dl>
-                            <div>
-                                <a class="btn btn-primary btn-md pull-right"><i class="fa fa-edit"></i> Ver Sección</a>
-                            </div>
                         </div>
                     </div>
                 </div>

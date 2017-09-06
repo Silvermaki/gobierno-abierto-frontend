@@ -1,0 +1,44 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2><i class="fa fa-graduation-cap"></i> <b>Ficha de Centro Educativo</b></h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                En esta sección se muestran las fichas informativas correspondientes a cada Centro Educativo.
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="hover-hand-border2" [routerLink]="['/plataforma/filtrar_centro']">
+                <div class="widget-head-color-box green-background p-lg text-center">
+                    <div>
+                        <img class = "search-logo" src="./assets/images/search.png">
+                    </div>
+                </div>
+                <div class="widget-text-box bordered-hover">
+                    <h3 class="media-heading text-center"><b>Búsqueda de Centro Educativo por Filtro</b></h3>
+
+                    <p class="text-center">Busca la ficha de un Centro Educativo específico por medio de un filtro de localización y código de centro educativo.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="hover-hand-border2" [routerLink]="['/plataforma/mapa_centros']">
+                <div class="widget-head-color-box blue-background p-lg text-center">
+                    <div>
+                        <img class = "search-logo" src="./assets/images/map.png">
+                    </div>
+                </div>
+                <div class="widget-text-box bordered-hover">
+                    <h3 class="media-heading text-center"><b>Búsqueda de Centro Educativo por Mapa</b></h3>
+
+                    <p class="text-center">Busca la ficha de un Centro Educativo específico por medio de sus coordenadas dentro de un mapa virtual interactivo.</p>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
