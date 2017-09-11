@@ -1,0 +1,17 @@
+.forma-centro-box{
+  border-radius: 5px;
+  margin-top: 10px;
+  background: #fff;
+}
+
+.forma-centro-image{
+  width:100%;
+  border: 1px solid $border-color;
+  border-radius:5px 5px 0px 0px;
+}
+
+.forma-centro-box-text{
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius:0px 0px 5px 5px;
+}

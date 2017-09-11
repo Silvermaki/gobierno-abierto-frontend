@@ -3,26 +3,27 @@
 
 // Variables, Mixins
 @import "imports/variables";
-@import "imports/mixins";
 
 // Elements
+@import "imports/modulo_autenticacion";
+@import "imports/modulo_ficha_centro";
+@import "imports/modulo_filtro_centro";
+@import "imports/modulo_mapa_centro";
+@import "imports/modulo_forma_centro";
+@import "imports/modulo_rendimiento";
 @import "imports/modulo_matricula";
 @import "imports/modulo_estadisticas";
 @import "imports/modulo_todos";
-@import "imports/typography";
-@import "imports/navigation";
-@import "imports/top_navigation";
-@import "imports/buttons";
-@import "imports/badges_labels";
-@import "imports/elements";
-@import "imports/sidebar";
+@import "imports/modulo_navegacion";
+@import "imports/modulo_navegacion_arriba";
+@import "imports/botones";
+@import "imports/texto";
+@import "imports/elementos_compartidos";
 @import "imports/base";
-@import "imports/pages";
 @import "imports/metismenu";
 @import "imports/spinners";
 @import "imports/rtl";
 @import "imports/media";
-@import "imports/custom";
 
 // Clear layout on print mode
 @media print {

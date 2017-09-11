@@ -2,8 +2,14 @@
     <div class="col-lg-10">
         <h2><i class="fa fa-graduation-cap"></i> <b>Ficha de Centro Educativo</b></h2>
         <ol class="breadcrumb">
+            <li>
+                Inicio
+            </li>
+            <li>
+                <a [routerLink]="['/plataforma/buscar_centro']">Ficha de Centro Educativo</a>
+            </li>
             <li class="active">
-                En esta sección se muestran las fichas informativas correspondientes a cada Centro Educativo.
+                <strong>{{centro_educativo.nombre_centro}}</strong>
             </li>
         </ol>
     </div>
@@ -11,7 +17,7 @@
 <div class="wrapper wrapper-content">
 	<div class="row animated fadeInRight">
     	<div class="col-xs-12">
-	        <div class="widget navy-bg">
+	        <div class="ficha-centro-component-title">
 	            <div class="row">
 	                <h2 class="font-bold text-center small-margins"><i class="fa fa-institution"></i> {{centro_educativo.nombre_centro}}</h2>
 	            </div>
@@ -22,11 +28,10 @@
 	<div class="row animated fadeInRight">
 		<div class = "col-md-4 no-padding">
 	    	<div class = "col-xs-12">
-	        	<div class="widget white-bg no-padding">
+	        	<div class="ficha-centro-component no-padding">
 		            <div class="p-m">
 		            	<h2 class="font-bold no-margins text-center"><i class="fa fa-map-marker"></i> Ubicación</h2>
-		            	<img class = "search-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
-		                
+		            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
 		                <h3 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}</h3>
 		                <h4 class="text-center">Aldea: {{centro_educativo.aldea}}</h4>
 		            </div>
@@ -35,7 +40,7 @@
         </div>	
         <div class = "col-md-8 no-padding">
 	        <div class="col-xs-6">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-codepen fa-2x"></i>
@@ -48,7 +53,7 @@
 		        </div>
 		    </div>
 	        <div class="col-xs-6">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-phone fa-2x"></i>
@@ -61,7 +66,7 @@
 		        </div>
 		    </div>
 		    <div class="col-xs-12">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-home fa-2x"></i>
@@ -74,7 +79,7 @@
 		        </div>
 		    </div>
 		    <div class="col-xs-12">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-envelope fa-2x"></i>
@@ -87,7 +92,7 @@
 		        </div>
 		    </div>
 		    <div class="col-xs-6">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-balance-scale fa-2x"></i>
@@ -100,7 +105,7 @@
 		        </div>
 		    </div>
 		    <div class="col-xs-6">
-		        <div class="widget style1 white-bg">
+		        <div class="ficha-centro-component simple-style">
 		            <div class="row">
 		                <div class="col-xs-2">
 		                    <i class="fa fa-map-signs fa-2x"></i>
@@ -116,7 +121,7 @@
 	</div>
 	<div class="row animated fadeInRight">
 		<div class="col-md-4">
-	        <div class="widget lazur-bg text-center hover-hand" (click)="infraestructura_modal.show()">
+	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="infraestructura_modal.show()">
 	            <div>
 	                <h3 class="font-bold no-margins">
 	                    Infraestructura
@@ -126,7 +131,7 @@
 	        </div>
 	    </div>
 	    <div class="col-md-4">
-	        <div class="widget lazur-bg text-center hover-hand" (click)="docentes_modal.show()">
+	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="docentes_modal.show()">
 	            <div>
 	                <h3 class="font-bold no-margins">
 	                    Docentes
@@ -136,7 +141,7 @@
 	        </div>
 	    </div>
 	    <div class="col-md-4">
-	        <div class="widget lazur-bg text-center hover-hand" (click)="oferta_modal.show()">
+	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="oferta_modal.show()">
 	            <div>
 	                <h3 class="font-bold no-margins">
 	                    Oferta

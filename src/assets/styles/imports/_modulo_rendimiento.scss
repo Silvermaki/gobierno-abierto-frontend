@@ -1,0 +1,25 @@
+.rendimiento-box-content {
+  padding: 0;
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #fff;
+  border-radius:5px;
+}
+
+.rendimiento-box{
+  width:100%;
+}
+
+.rendimiento-box-name {
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius:0px 0px 5px 5px;
+}
+
+.rendimiento-box-image{
+  width:100%;
+  border: 1px solid $border-color;
+  border-radius:5px 5px 0px 0px;
+}
