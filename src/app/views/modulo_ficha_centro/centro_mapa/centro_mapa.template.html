@@ -26,7 +26,7 @@
                     <div *ngIf="!marker_clicked">
                         <p class="font-bold m-b-xs text-center navy-code big-text">Haga clic en un Centro Educativo para ver su información.</p>
                     </div>
-                    <div *ngIf="marker_clicked">
+                    <div *ngIf="marker_clicked" class="animated fadeIn">
                         <div class="col-xs-12">
                             <p class="font-bold m-b-xs text-center navy-code big-text"><i class="fa fa-graduation-cap"></i> Centro Educativo</p>
                             <p class="m-b-xs text-center">{{centro_seleccionado.nombre}}</p>

@@ -1,0 +1,41 @@
+.hover-hand-border{
+    cursor: pointer;
+    transition:all 0.3s ease;
+}
+
+.hover-hand-border:hover{
+    box-shadow: inset 0 0 0 5px #A9E2F3;
+}
+
+.hover-hand-border:active{
+    border:0px !important;
+}
+
+*:focus {
+    outline: none;
+}
+
+
+.no-right-padding{
+	padding-right:0px !important;
+}
+
+.no-left-padding{
+	padding-left:0px !important;
+}
+
+.no-side-padding{
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+
+.aligned-text{
+	margin:auto;
+}
+
+.column-height{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+}

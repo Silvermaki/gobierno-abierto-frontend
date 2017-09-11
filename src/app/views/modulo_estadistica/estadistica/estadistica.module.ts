@@ -2,11 +2,11 @@ import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
-import {StatisticsComponent} from "./statistics.component";
+import {EstadisticaComponent} from "./estadistica.component";
 import {LaddaModule} from 'angular2-ladda';
 @NgModule({
   declarations: [
-    StatisticsComponent
+    EstadisticaComponent
   ],
   imports: [
     BrowserModule,
@@ -16,9 +16,9 @@ import {LaddaModule} from 'angular2-ladda';
     LaddaModule
   ],
   exports: [
-    StatisticsComponent
+    EstadisticaComponent
   ],
 })
 
-export class StatisticsModule {
+export class EstadisticaModule {
 }

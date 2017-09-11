@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { default as swal } from 'sweetalert2';
 
 @Component({
-  selector: 'statistics',
-  templateUrl: 'statistics.template.html'
+  selector: 'estadistica',
+  templateUrl: 'estadistica.template.html'
 })
 
 
-export class StatisticsComponent implements OnInit{
+export class EstadisticaComponent implements OnInit{
 
 	constructor(private router:Router){
 	}

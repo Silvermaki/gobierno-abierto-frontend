@@ -2,18 +2,18 @@
 import {Routes} from "@angular/router";
 
 //Component Imports
-import {LoginComponent} from "./views/login/login.component";
-import {RegisterComponent} from "./views/register/register.component";
-import {StatisticsComponent} from "./views/statistics/statistics.component";
-import {MatriculaComponent} from "./views/matricula/matricula.component";
-import {RendimientoComponent} from "./views/rendimiento/rendimiento.component";
-import {EmptyComponent} from "./views/empty/empty.component";
-import {MatriculaGeneralComponent} from "./views/matricula_general/matricula_general.component";
-import {FormaCentroComponent} from "./views/forma_centro/forma_centro.component";
 import {BasicLayoutComponent} from "./components/common/layouts/basicLayout.component";
-import {CentroFiltroComponent} from "./views/centro_filtro/centro_filtro.component";
-import {CentroMapaComponent} from "./views/centro_mapa/centro_mapa.component";
-import {FichaCentroComponent} from "./views/ficha_centro/ficha_centro.component";
+import {LoginComponent} from "./views/modulo_autenticacion/login/login.component";
+import {RegisterComponent} from "./views/modulo_autenticacion/register/register.component";
+import {EstadisticaComponent} from "./views/modulo_estadistica/estadistica/estadistica.component";
+import {MatriculaComponent} from "./views/modulo_estadistica/matricula/matricula.component";
+import {RendimientoComponent} from "./views/modulo_estadistica/rendimiento/rendimiento.component";
+import {MatriculaGeneralComponent} from "./views/modulo_estadistica/reportes_matricula/matricula_general/matricula_general.component";
+import {FormaCentroComponent} from "./views/modulo_ficha_centro/forma_centro/forma_centro.component";
+import {CentroFiltroComponent} from "./views/modulo_ficha_centro/centro_filtro/centro_filtro.component";
+import {CentroMapaComponent} from "./views/modulo_ficha_centro/centro_mapa/centro_mapa.component";
+import {FichaCentroComponent} from "./views/modulo_ficha_centro/ficha_centro/ficha_centro.component";
+import {EmptyComponent} from "./views/empty/empty.component";
 
 
 export const ROUTES:Routes = [
@@ -21,7 +21,7 @@ export const ROUTES:Routes = [
   	{path: 'registrarse', component: RegisterComponent},
   	{path: 'plataforma', component: BasicLayoutComponent, 
     children: [
-    	{path: 'estadisticas', component: StatisticsComponent},
+    	{path: 'estadisticas', component: EstadisticaComponent},
     	{path: 'matricula', component: MatriculaComponent},
       {path: 'rendimiento', component: RendimientoComponent},
       {path: 'empty', component: EmptyComponent},

@@ -7,6 +7,7 @@ body {
 
 }
 
+
 .mapa-centro{
   height:400px;
 }
@@ -15,13 +16,23 @@ body {
     cursor: pointer;
 }
 
+
+
+.full-height{
+  height:100%;
+}
+
+
+
+
+
 .hover-hand-border{
     cursor: pointer;
     transition:all 0.3s ease;
 }
 
 .hover-hand-border:hover{
-    box-shadow: inset 0 0 0 5px #A4A4A4;
+    box-shadow: inset 0 0 0 5px #A9E2F3;
 }
 
 .bordered-hover{
@@ -33,7 +44,7 @@ body {
 }
 
 .hover-hand-border2:hover > .bordered-hover{
-    box-shadow: inset 0 0 0 5px #A4A4A4;
+    box-shadow: inset 0 0 0 5px #A9E2F3;
 }
 
 .search-logo{
@@ -185,6 +196,12 @@ body {
 .custom-wizard-content{
   padding-left:10%;
   padding-right:10%;
+}
+
+.request-image2{
+  width:100%;
+  height:auto;
+  border-radius:5px 0px 0px 5px;
 }
 
 .request-image{

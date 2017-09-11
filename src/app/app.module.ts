@@ -9,18 +9,18 @@ import {ROUTES} from "./app.routes";
 
 //Components and Modules Imports
 import {AppComponent} from './app.component';
-import {LoginModule} from "./views/login/login.module";
-import {RegisterModule} from "./views/register/register.module";
-import {MatriculaModule} from "./views/matricula/matricula.module";
-import {RendimientoModule} from "./views/rendimiento/rendimiento.module";
 import {EmptyModule} from "./views/empty/empty.module";
-import {StatisticsModule} from "./views/statistics/statistics.module";
 import {LayoutsModule} from "./components/common/layouts/layouts.module";
-import {MatriculaGeneralModule} from "./views/matricula_general/matricula_general.module";
-import {FormaCentroModule} from "./views/forma_centro/forma_centro.module";
-import {FichaCentroModule} from "./views/ficha_centro/ficha_centro.module";
-import {CentroFiltroModule} from "./views/centro_filtro/centro_filtro.module";
-import {CentroMapaModule} from "./views/centro_mapa/centro_mapa.module";
+import {LoginModule} from "./views/modulo_autenticacion/login/login.module";
+import {RegisterModule} from "./views/modulo_autenticacion/register/register.module";
+import {MatriculaModule} from "./views/modulo_estadistica/matricula/matricula.module";
+import {RendimientoModule} from "./views/modulo_estadistica/rendimiento/rendimiento.module";
+import {EstadisticaModule} from "./views/modulo_estadistica/estadistica/estadistica.module";
+import {MatriculaGeneralModule} from "./views/modulo_estadistica/reportes_matricula/matricula_general/matricula_general.module";
+import {FormaCentroModule} from "./views/modulo_ficha_centro/forma_centro/forma_centro.module";
+import {FichaCentroModule} from "./views/modulo_ficha_centro/ficha_centro/ficha_centro.module";
+import {CentroFiltroModule} from "./views/modulo_ficha_centro/centro_filtro/centro_filtro.module";
+import {CentroMapaModule} from "./views/modulo_ficha_centro/centro_mapa/centro_mapa.module";
 import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
@@ -35,7 +35,7 @@ import {AgmCoreModule} from '@agm/core';
     LayoutsModule,
     LoginModule,
     RegisterModule,
-    StatisticsModule,
+    EstadisticaModule,
     MatriculaModule,
     MatriculaGeneralModule,
     FormaCentroModule,
