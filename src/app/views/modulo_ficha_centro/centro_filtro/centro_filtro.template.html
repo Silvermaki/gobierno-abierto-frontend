@@ -16,11 +16,208 @@
     </div>
 </div>
 <!-- End Page Header -->
-<div class="wrapper wrapper-content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="col-md-12 well white-bg">
-            
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row column-height">
+        <div class="col-xs-12 col-lg-4 well centro-filtro-box">
+            <form [formGroup]="school_filter_form" role="form" novalidate="novalidate">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="text-center"><b>Filtro de Búsqueda</b></h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Nombre del Centro</label>
+                            <div class = "input-group">
+                                <input [formControl]="school_filter_form.controls['nombre']" type="text" class="form-control input-sm" placeholder="Nombre o Palabra Clave">
+                                <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Código del Centro</label>
+                            <div class = "input-group">
+                                <input [formControl]="school_filter_form.controls['codigo']" type="text" class="form-control input-sm" placeholder="Código" maxlength="12">
+                                <span class="input-group-addon"><i class="fa fa-codepen"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['departamento']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let depto of departamentos" [ngValue]="depto">{{depto.departamento}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                            </div>
+                        </div>
+                        <p class="text-danger" *ngIf="!school_filter_form.controls['departamento'].valid && reporte_generado">El departamento es requerido.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5" *ngIf="school_filter_form.controls['departamento'].value!='' &&  school_filter_form.controls['departamento'].value!=undefined && school_filter_form.controls['departamento'].value!=null">
+                        <div class="form-group">
+                            <label>Municipio</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['municipio']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let municipio of municipios" [ngValue]="municipio">{{municipio.municipio}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            </div>
+                        </div>
+                        <p class="text-danger" *ngIf="!school_filter_form.controls['municipio'].valid && reporte_generado">El municipio es requerido.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5" *ngIf="school_filter_form.controls['departamento'].value!='' &&  school_filter_form.controls['departamento'].value!=undefined && school_filter_form.controls['departamento'].value!=null && school_filter_form.controls['municipio'].value!='' &&  school_filter_form.controls['municipio'].value!=undefined && school_filter_form.controls['municipio'].value!=null" >
+                        <div class="form-group">
+                            <label>Aldea</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['aldea']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let aldea of aldeas" [ngValue]="aldea">{{aldea.aldea}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                            </div>
+                        </div>
+                        <p class="text-danger" *ngIf="!school_filter_form.controls['aldea'].valid && reporte_generado">La aldea es requerida.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Tipo de Administración</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['administracion']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let administracion of administraciones" [ngValue]="administracion">{{administracion.administracion}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Nivel Educativo</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['nivel']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let nivel of niveles" [ngValue]="nivel">{{nivel.nivel}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5" *ngIf="school_filter_form.controls['nivel'].value!='' &&  school_filter_form.controls['nivel'].value!=undefined && school_filter_form.controls['nivel'].value!=null">
+                        <div class="form-group">
+                            <label>Sub-Nivel</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['subnivel']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let subnivel of subniveles" [ngValue]="subnivel">{{subnivel.nombre}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary extra-margin-top" (click) = "set_filter()" [disabled]="applying_filter">Realizar Búsqueda</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-lg-8 well centro-filtro-box-results" [ngClass]="{'sk-loading':applying_filter}">
+            <div class="sk-spinner sk-spinner-wave" *ngIf="applying_filter">
+                <div class="sk-rect1"></div>
+                <div class="sk-rect2"></div>
+                <div class="sk-rect3"></div>
+                <div class="sk-rect4"></div>
+                <div class="sk-rect5"></div>
+            </div>
+            <div class="col-xs-12">
+                <h3 class="text-center"><b>Resultados de Búsqueda</b></h3>
+                <h4 *ngIf="!reporte_generado && !applying_filter" class="font-bold extra-margin-top text-center blue-text">
+                Realice una búsqueda por medio del filtro para poder mostrar resultados
+                </h4>
+                <h4 *ngIf="reporte_generado && resultados.length < 1 && !applying_filter" class="font-bold extra-margin-top text-center text-danger">
+                    No se encontró ningún Centro Educativo con el filtro especificado
+                </h4>
+            </div>
+            <div class="row" *ngIf="reporte_generado && resultados.length > 1 && !applying_filter">
+                <div class="col-xs-12 centro-filtro-table-box">
+                    <div class = "table-responsive">
+                        <table class="table table-bordered table-hover centro-filtro-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center centro-filtro-sort col-md-8 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='nombre'}" (click)="sort_name()"><b>Nombre <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='nombre', 'fa-arrow-down':!ascendent && order=='nombre'}"></i></b></th>
+                                    <th class="text-center centro-filtro-sort col-md-2 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='codigo'}" (click)="sort_code()"><b>Código <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='codigo', 'fa-arrow-down':!ascendent && order=='codigo'}"></i></b></th>
+                                    <th class="text-center col-md-2 centro-filtro-table-header-element"><b>Ficha</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 0">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 0].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 0].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 0].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 1">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 1].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 1].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 1].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 2">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 2].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 2].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 2].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 3">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 3].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 3].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 3].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 4">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 4].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 4].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 4].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 5">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 5].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 5].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 5].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 6">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 6].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 6].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 6].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 7">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 7].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 7].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 7].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 8">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 8].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 8].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 8].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                                <tr *ngIf="resultados.length > 0 && resultados.length >= requestOffsetLeft  + 9">
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 9].nombre_centro}}</td>
+                                    <td class="centro-filtro-table-element">{{resultados[requestOffsetLeft -1 + 9].codigo_centro}}</td>
+                                    <td class="centro-filtro-table-element text-center"><a class="centro-filtro-table-button" [routerLink]="['/plataforma/ficha_centro', resultados[requestOffsetLeft -1 + 9].centro_id]" target="_blank"><b>Ver Ficha</b></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary btn-sm" (click)="updateRequestsGoLeft()" [disabled]="requestOffsetLeft == 0 || requestOffsetLeft==1"><i class="fa fa-arrow-left"></i></button>
+                        <button class="btn btn-primary btn-sm" (click)="updateRequestsGoRight()" [disabled]="resultados.length<=requestOffsetRight"><i class="fa fa-arrow-right"></i></button>
+                    </div>
+                    <strong> Mostrando {{requestOffsetLeft}} - {{requestOffsetRight}} de un total de {{resultados.length}} Centros Educativos </strong>
+                </div>
             </div>
         </div>
     </div>

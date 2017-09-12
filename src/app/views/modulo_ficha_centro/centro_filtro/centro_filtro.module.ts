@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {CentroFiltroComponent} from "./centro_filtro.component";
 import {LaddaModule} from 'angular2-ladda';
+import { OrderModule } from 'ngx-order-pipe';
 @NgModule({
   declarations: [
     CentroFiltroComponent
@@ -13,7 +14,8 @@ import {LaddaModule} from 'angular2-ladda';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    LaddaModule
+    LaddaModule,
+    OrderModule
   ],
   exports: [
     CentroFiltroComponent

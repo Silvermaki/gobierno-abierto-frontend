@@ -30,7 +30,7 @@ export const ROUTES:Routes = [
       {path: 'filtrar_centro', component:CentroFiltroComponent},
       {path: 'mapa_centros', component:CentroMapaComponent},
       {path: 'ficha_centro/:id', component:FichaCentroComponent}
-    ]
-  },
-  {path: '**',  redirectTo: 'conectarse'}
+      ]
+    },
+    {path: '**',  redirectTo: 'conectarse'}
 ];

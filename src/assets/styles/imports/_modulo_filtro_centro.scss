@@ -1,0 +1,62 @@
+.centro-filtro-sort-active{
+    color:#000 !important;
+}
+
+.centro-filtro-table{
+  
+}
+
+.centro-filtro-table-box{
+    margin-top:10px;
+}
+
+.centro-filtro-sort{
+    cursor: pointer;
+    
+}
+
+.centro-filtro-table-button{
+    text-decoration: underline;
+}
+
+.centro-filtro-table-header-element{
+    border: 1px solid #BEC0C1 !important;
+    background-color:#D8D8D8 !important;
+}
+
+.centro-filtro-table-element{
+    border-color: #BEC0C1 !important;
+}
+
+.centro-filtro-box{
+	 background-color:#fff;
+	 border-radius:5px;
+}
+
+.centro-filtro-box-results{
+	 background-color:#fff;
+	 border-radius:5px;
+}
+
+.centro-filtro-box-results > .sk-spinner { display: none; }
+.centro-filtro-box-results.sk-loading { position: relative; }
+.centro-filtro-box-results.sk-loading:after {
+    content: '';
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius:5px;
+
+}
+.centro-filtro-box-results.sk-loading > .sk-spinner {
+	border-radius:5px;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+}

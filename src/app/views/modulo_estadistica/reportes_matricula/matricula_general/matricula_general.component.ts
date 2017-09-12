@@ -161,27 +161,10 @@ export class MatriculaGeneralComponent implements OnInit{
             if(value != "" && value!=undefined && value!=null){
                 this.get_subniveles();
                 this.filter_form.controls['subnivel'].setValue("");
-                this.reporte_seleccionado.toggle_nivel = 1;
             }else{
-                this.reporte_seleccionado.toggle_nivel = 0;
                 this.subniveles = [];
             }
-        });
-        this.filter_form.controls['subnivel'].valueChanges.subscribe(value => {
-            if(value != "" && value!=undefined && value!=null){
-                this.reporte_seleccionado.toggle_subnivel = 1;
-            }else{
-                this.reporte_seleccionado.toggle_subnivel = 0;
-            }
-        });
-        this.filter_form.controls['administracion'].valueChanges.subscribe(value => {
-            if(value != "" && value!=undefined && value!=null){
-                this.reporte_seleccionado.toggle_administracion = 1;
-            }else{
-                this.reporte_seleccionado.toggle_administracion = 0;
-            }
-        });
-        
+        });   
     }
 
     open_matricula_modal(){

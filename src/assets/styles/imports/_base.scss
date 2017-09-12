@@ -274,9 +274,15 @@ ul.unstyled, ol.unstyled {
   border-top: 1px solid $border-color;
   bottom: 0;
   left: 0;
-  padding: 10px 20px;
+  padding: 5px 5px;
   position: absolute;
   right: 0;
+}
+
+@media (max-width: 576px) {
+  .footer{
+    display:none;
+  }
 }
 
 .footer.fixed_full {
