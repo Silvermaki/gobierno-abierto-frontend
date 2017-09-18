@@ -6,6 +6,8 @@ import {FichaCentroComponent} from "./ficha_centro.component";
 import {LaddaModule} from 'angular2-ladda';
 import {ModalModule} from 'ngx-bootstrap';
 import {FormaCentroService} from "../forma_centro/forma_centro.service";
+import {ChartsModule} from 'ng2-charts';
+
 @NgModule({
   declarations: [
     FichaCentroComponent
@@ -16,7 +18,8 @@ import {FormaCentroService} from "../forma_centro/forma_centro.service";
     FormsModule,
     ReactiveFormsModule,
     LaddaModule,
-    ModalModule
+    ModalModule,
+    ChartsModule
   ],
   exports: [
     FichaCentroComponent

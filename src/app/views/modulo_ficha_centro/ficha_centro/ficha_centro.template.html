@@ -14,204 +14,140 @@
         </ol>
     </div>
 </div>
+
 <div class="wrapper wrapper-content">
-	<div class="row animated fadeInRight">
-    	<div class="col-xs-12">
-	        <div class="ficha-centro-component-title">
-	            <div class="row">
-	                <h2 class="font-bold text-center small-margins"><i class="fa fa-institution"></i> {{centro_educativo.nombre_centro}}</h2>
+    <div class="row extra-margin-bot25">
+        <div class="col-xs-12 no-padding">
+        	<div class="ficha-component">
+	            <div class="ficha-component-title">
+	                <h3 class="no-margins text-center"><b><i class="fa fa-"></i> Datos Generales</b></h3>
+	            </div>
+	            <div class="ficha-component-content">
+	                <div class="row">
+	                	<div class = "col-md-6 col-lg-4">
+			            	<h3 class="text-center"><b><i class="fa fa-map-marker"></i> Ubicación</b></h3>
+			            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
+			                <h4 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}</h4>
+			                <h4 class="text-center bottom-text-margins">Aldea: {{centro_educativo.aldea}}</h4>
+				        </div>
+				        <div class = "col-md-6 col-lg-8">
+				        	<div class="row">
+					        	<div class="col-sm-6  col-md-6 col-lg-4 extra-margin-bot">
+					        		<h3><b><i class="fa fa-codepen"></i> Código</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.codigo_centro}}" readonly>
+					        	</div>
+					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+					        		<h3><b><i class="fa fa-balance-scale"></i> Administración</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.administracion}}" readonly>
+					        	</div>
+					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+					        		<h3><b><i class="fa fa-map-signs"></i> Zona</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.zona}}" readonly>
+					        	</div>
+					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+					        		<h3><b><i class="fa fa-phone"></i> Teléfono</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.tel_centro}}" readonly>
+					        	</div>
+					        	<div class="col-sm-12 col-md-12 col-lg-8 extra-margin-bot">
+					        		<h3><b><i class="fa fa-envelope"></i> Correo Electrónico</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.correo_centro}}" readonly>
+					        	</div>
+					        	<div class="col-md-12">
+					        		<h3><b><i class="fa fa-home"></i> Dirección</b></h3>
+					        		<textarea type="text" class="form-control" value="{{centro_educativo.direccion}}" readonly rows="3"></textarea>
+					        	</div>
+					        </div>
+				        </div>
+	                </div>
 	            </div>
 	        </div>
-	    </div>
-	</div>
-
-	<div class="row animated fadeInRight">
-		<div class = "col-md-4 no-padding">
-	    	<div class = "col-xs-12">
-	        	<div class="ficha-centro-component no-padding">
-		            <div class="p-m">
-		            	<h2 class="font-bold no-margins text-center"><i class="fa fa-map-marker"></i> Ubicación</h2>
-		            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
-		                <h3 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}</h3>
-		                <h4 class="text-center">Aldea: {{centro_educativo.aldea}}</h4>
-		            </div>
-		        </div>
-	        </div>
-        </div>	
-        <div class = "col-md-8 no-padding">
-	        <div class="col-xs-6">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-codepen fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Código </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.codigo_centro}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-	        <div class="col-xs-6">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-phone fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Teléfono </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.tel_centro}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <div class="col-xs-12">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-home fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Dirección </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.direccion}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <div class="col-xs-12">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-envelope fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Correo de Contacto </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.correo_centro}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <div class="col-xs-6">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-balance-scale fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Administración </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.administracion}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <div class="col-xs-6">
-		        <div class="ficha-centro-component simple-style">
-		            <div class="row">
-		                <div class="col-xs-2">
-		                    <i class="fa fa-map-signs fa-2x"></i>
-		                </div>
-		                <div class="col-xs-10 text-right">
-		                    <span> Zona </span>
-		                    <h3 class="font-bold no-margins">{{centro_educativo.zona}}</h3>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-	</div>
-	<div class="row animated fadeInRight">
-		<div class="col-md-4">
-	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="infraestructura_modal.show()">
-	            <div>
-	                <h3 class="font-bold no-margins">
-	                    Infraestructura
-	                </h3>
-	                Estadísticas de Infraestructura
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 no-padding">
+        	<div class="ficha-component">
+	            <div class="ficha-component-title">
+	                <h3 class="no-margins text-center"><b><i class="fa fa-"></i> Estadísticas de Matrícula y Deserción</b></h3>
+	            </div>
+	            <div class="ficha-component-content">
+	            	<div class="row">
+	            		<div class="col-xs-12">
+	            			 <div class="row">
+			                	<div class="col-xs-12">
+			                		<h3 class="text-center"><i class="fa fa-calendar fa-2x"></i></h3>
+			                		<h3 class="text-center"><b>Periodo</b></h3>
+			                	</div>
+			                	<div class="col-xs-12">
+					                <div class="no-margins noselect" *ngIf="matricula_grado_genero_years.length>0">
+					                    <h2 class="text-center no-margins"><b><i class="fa fa-arrow-left extra-margin-right-10" [ngClass]="{'year-arrow':year_offset>0, 'year-arrow-inactive':year_offset==0}" (click)="year_offset_left()"></i>{{matricula_grado_genero_years[year_offset]}}</b><i class="fa fa-arrow-right extra-margin-left-10" [ngClass]="{'year-arrow':year_offset < matricula_grado_genero_years.length-1, 'year-arrow-inactive':year_offset >= matricula_grado_genero_years.length-1}" (click)="year_offset_right()"></i></h2>
+					                </div>
+			                	</div>
+			                </div>
+	            		</div>
+	            		<div class="col-lg-6">
+	            			<div class="row">
+	            				<div class="col-xs-12">
+	            					<h3 class="text-center extra-margin-top30"><b><i class="fa fa-bar-chart"></i> Matrícula Inicial por Grado y Género</b></h3>
+	            				</div>
+	            			</div>
+	            			<div class="row">
+	            				<div class="col-xs-12">
+			            			<div class="matricula-chart">
+									    <canvas baseChart
+									            [datasets]="barChartData"
+									            [labels]="barChartLabels"
+									            [options]="barChartOptions"
+									            [legend]="barChartLegend"
+									            [chartType]="barChartType"
+									            (chartHover)="chartHovered($event)"
+									            (chartClick)="chartClicked($event)">       
+									    </canvas>
+								  	</div>
+							  	</div>
+						  	</div>
+	            		</div>
+	            		<div class="col-lg-6">
+	            			<div class="row">
+	            				<div class="col-xs-12">
+	            					<h3 class="text-center extra-margin-top30"><b><i class="fa fa-bar-chart"></i> Matrícula Inicial por Grado y Género</b></h3>
+	            				</div>
+	            			</div>
+	            			<div class="row">
+	            				<div class="col-xs-12">
+	            					<div class = "table-responsive">
+							            <table class="table table-bordered table-hover matricula-table table-padding">
+							                <thead>
+							                    <tr>
+							                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+							                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+							                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+							                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+							                    </tr>
+							                </thead>
+							                <tfoot>
+					                        <tr>
+					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_femenino()).toLocaleString()}}</b></td>
+					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_masculino()).toLocaleString()}}</b></td>
+					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_masculino() + suma_total_femenino()).toLocaleString()}}</b></td>
+					                        </tr>
+					                        </tfoot>
+							                <tbody>
+							                    <tr *ngFor = "let grado of matricula_selected_year">
+							                        <td class="matricula-table-element text-center">{{grado.nombre_grado}}</td>
+							                        <td class="matricula-table-element text-center">{{(grado.matricula_f).toLocaleString()}}</td>
+							                        <td class="matricula-table-element text-center">{{(grado.matricula_m).toLocaleString()}}</td>
+							                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado.matricula_total).toLocaleString()}}</b></td>
+							                    </tr>
+							                </tbody>
+							            </table>
+							        </div>
+	            				</div>
+	            			</div>
+	            		</div>
+	            	</div>
 	            </div>
 	        </div>
-	    </div>
-	    <div class="col-md-4">
-	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="docentes_modal.show()">
-	            <div>
-	                <h3 class="font-bold no-margins">
-	                    Docentes
-	                </h3>
-	                Estadísticas de Docentes
-	            </div>
-	        </div>
-	    </div>
-	    <div class="col-md-4">
-	        <div class="ficha-centro-component lazur-bg text-center hover-hand" (click)="oferta_modal.show()">
-	            <div>
-	                <h3 class="font-bold no-margins">
-	                    Oferta
-	                </h3>
-	                Oferta del Centro
-	            </div>
-	        </div>
-	    </div>
-	</div>
+        </div>
+    </div>
 </div>
-<div bsModal #infraestructura_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="text-center"><strong>Estadísticas de Infraestructura</strong></h2>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-                	<div class = "col-xs-3 extra-padding-top">
-                    </div>
-                    <div class = "col-xs-6 extra-padding-top">
-                        <button (click)="infraestructura_modal.hide()" class="btn btn-danger logo"><i class="fa fa-close"></i> Cerrar</button>
-                    </div>
-                    <div class = "col-xs-3 extra-padding-top">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
- <div bsModal #docentes_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="text-center"><strong>Estadísticas de Docentes</strong></h2>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-                	<div class = "col-xs-3 extra-padding-top">
-                    </div>
-                    <div class = "col-xs-6 extra-padding-top">
-                        <button (click)="docentes_modal.hide()" class="btn btn-danger logo"><i class="fa fa-close"></i> Cerrar</button>
-                    </div>
-                    <div class = "col-xs-3 extra-padding-top">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
- <div bsModal #oferta_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="text-center"><strong>Oferta de Centro</strong></h2>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-                	<div class = "col-xs-3 extra-padding-top">
-                    </div>
-                    <div class = "col-xs-6 extra-padding-top">
-                        <button (click)="oferta_modal.hide()" class="btn btn-danger logo"><i class="fa fa-close"></i> Cerrar</button>
-                    </div>
-                    <div class = "col-xs-3 extra-padding-top">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>

@@ -84,28 +84,6 @@ export class CentroFiltroComponent implements OnInit{
         this.zonas = [{zona_id:1, zona: "RURAL"}, {zona_id:2, zona: "URBANA"}];
 	}
 
-    sort_name(){
-        if(this.order == "nombre" && this.ascendent == false){
-            this.ascendent = true;
-        }else if(this.order == "nombre" && this.ascendent == true){
-            this.ascendent = false;
-        }else{
-            this.order = "nombre";
-            this.ascendent = false;
-        }
-    }
-
-    sort_code(){
-        if(this.order == "codigo" && this.ascendent == false){
-            this.ascendent = true;
-        }else if(this.order == "codigo" && this.ascendent == true){
-            this.ascendent = false;
-        }else{
-            this.order = "codigo";
-            this.ascendent = false;
-        }
-    }
-
 	ngOnInit() {
 		this.get_administraciones();
 		this.get_departamentos();
@@ -120,6 +98,8 @@ export class CentroFiltroComponent implements OnInit{
         this.resultados = [];
         this.requestOffsetRight = 0;//set as 0
         this.requestOffsetLeft = 0;//set as 0
+        this.order = "";
+        this.ascendent = false;
         var response;
         var nombre = this.school_filter_form.controls['nombre'].value;
         var codigo = this.school_filter_form.controls['codigo'].value;
@@ -161,6 +141,75 @@ export class CentroFiltroComponent implements OnInit{
                
             }
         ); 
+    }
+
+    sort_name(){
+        if(this.order == "nombre" && this.ascendent == false){
+            this.ascendent = true;
+            this.sort_name_asc();
+        }else if(this.order == "nombre" && this.ascendent == true){
+            this.ascendent = false;
+            this.sort_name_desc();
+        }else{
+            this.order = "nombre";
+            this.ascendent = false;
+            this.sort_name_desc();
+        }
+
+    }
+
+    sort_code(){
+        if(this.order == "codigo" && this.ascendent == false){
+            this.ascendent = true;
+            this.sort_code_asc();
+        }else if(this.order == "codigo" && this.ascendent == true){
+            this.ascendent = false;
+            this.sort_code_desc();
+        }else{
+            this.order = "codigo";
+            this.ascendent = false;
+            this.sort_code_desc();
+        }
+    }
+
+    sort_name_asc(){
+        this.resultados.sort(function(a, b){
+            var x = a.nombre_centro.toLowerCase().replace("\"","").replace(".","").replace("  "," ").trim();
+            var y = b.nombre_centro.toLowerCase().replace("\"","").replace(".","").replace("  "," ").trim();
+            if (x < y) {return 1;}
+            if (x > y) {return -1;}
+            return 0;
+        });
+    }
+
+    sort_name_desc(){
+        this.resultados.sort(function(a, b){
+            var x = a.nombre_centro.toLowerCase().replace("\"","").replace(".","").replace("  "," ").trim();
+            var y = b.nombre_centro.toLowerCase().replace("\"","").replace(".","").replace("  "," ").trim();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        });
+    }
+
+    sort_code_asc(){
+        this.resultados.sort(function(a, b){
+            var x = a.codigo_centro.toLowerCase().trim();
+            var y = b.codigo_centro.toLowerCase().trim();
+            if (x < y) {return 1;}
+            if (x > y) {return -1;}
+            return 0;
+        });
+    }
+
+    sort_code_desc(){
+        this.resultados.sort(function(a, b){
+            var x = a.codigo_centro.toLowerCase().trim();
+            var y = b.codigo_centro.toLowerCase().trim();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        });
     }
 
     get_departamentos(){

@@ -1,20 +1,134 @@
-.ficha-centro-component {
+.ficha-component{
+  border: 1px solid $border-color;
   border-radius: 5px;
-  padding: 15px 20px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.extra-margin-bot{
+  margin-bottom:10px;
+}
+
+.table-padding > tbody > tr > th{
+  padding: 6px !important; 
+}
+
+.table-padding > tfoot > tr > th{
+  padding: 6px !important; 
+}
+
+.table-padding > thead > tr > td{
+  padding: 6px !important; 
+}
+
+.table-padding > tbody > tr > td{
+  padding: 6px !important; 
+}
+
+.table-padding > tfoot > tr > td{
+  padding: 6px !important; 
+}
+
+.matricula-table-total-cell{
+  background-color:#E0F2F7;
+}
+
+.matricula-chart{
+  display: block;
+  height:350px;
+}
+
+.extra-margin-bot25{
+  margin-bottom:25px;
+}
+
+.extra-margin-left-10{
+  margin-left:10px;
+}
+
+.extra-margin-right-10{
+  margin-right:10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.bottom-text-margins{
+  margin-top:0px !important;
+  margin-bottom:15px !important;
+}
+
+.ficha-component-content{
+  border-radius: 0px 0px 5px 5px;
+  background-color: $ibox-content-bg;
+  color: inherit;
+  padding: 20px 20px 20px 20px;
+  border-color: $border-color;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+
+.ficha-component-title{
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: $ibox-title-bg;
+  border-color: $border-color;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 2px 0 0;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 15px 15px 7px;
+  min-height: 48px;
+}
+
+.ficha-centro-arrow {
+  border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
   background-color:#fff;
   border: 1px solid $border-color;
+
 }
 
-.ficha-centro-component-title{
+.year-arrow{
+  color:#2E75B6;
+}
+
+
+
+.year-arrow-inactive{
+  color:#BDBDBD;
+}
+
+.year-arrow:hover{
+  cursor: pointer;
+  color:#2ECCFA;
+}
+
+.ficha-centro-component-section{
 	border-radius: 5px;
 	padding: 15px 20px;
 	margin-bottom: 10px;
 	margin-top: 10px;
-	color:#fff;
-	background-color:#045FB4;
+	background-color:#fff;
 	border: 1px solid $border-color;
+  text-decoration:underline;
+}
+
+.ficha-centro-component-title{
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color:#fff;
+  background-color:#2E75B6;
+  border: 1px solid $border-color;
 }
 
 .map-logo{
@@ -40,4 +154,30 @@
   border-radius: 5px 5px 0 0;
   margin-top: 10px;
 
+}
+
+.matricula-table{
+    margin-top:31px;
+}
+
+.margin-title{
+  margin-bottom:15px !important; 
+}
+
+.matricula-sort{
+    cursor: pointer;
+    
+}
+
+.matricula-table-header-element{
+    border: 1px solid #BEC0C1 !important;
+    background-color:#D8D8D8 !important;
+}
+
+.matricula-sort-active{
+    color:#000 !important;
+}
+
+.matricula-table-element{
+    border-color: #BEC0C1 !important;
 }

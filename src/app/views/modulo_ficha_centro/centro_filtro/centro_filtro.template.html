@@ -147,14 +147,14 @@
                     No se encontró ningún Centro Educativo con el filtro especificado
                 </h4>
             </div>
-            <div class="row" *ngIf="reporte_generado && resultados.length > 1 && !applying_filter">
+            <div class="row" *ngIf="reporte_generado && resultados.length > 0 && !applying_filter">
                 <div class="col-xs-12 centro-filtro-table-box">
                     <div class = "table-responsive">
                         <table class="table table-bordered table-hover centro-filtro-table">
                             <thead>
                                 <tr>
-                                    <th class="text-center centro-filtro-sort col-md-8 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='nombre'}" (click)="sort_name()"><b>Nombre <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='nombre', 'fa-arrow-down':!ascendent && order=='nombre'}"></i></b></th>
-                                    <th class="text-center centro-filtro-sort col-md-2 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='codigo'}" (click)="sort_code()"><b>Código <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='codigo', 'fa-arrow-down':!ascendent && order=='codigo'}"></i></b></th>
+                                    <th class="text-center centro-filtro-sort col-md-8 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='nombre'}" (click)="sort_name()"><b>Nombre <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='nombre', 'fa-arrow-down':!ascendent && order=='nombre', 'fa-sort':order!='nombre'}"></i></b></th>
+                                    <th class="text-center centro-filtro-sort col-md-2 centro-filtro-table-header-element" [ngClass]="{'centro-filtro-sort-active':order=='codigo'}" (click)="sort_code()"><b>Código <i class= "fa" [ngClass]="{'fa-arrow-up':ascendent && order=='codigo', 'fa-arrow-down':!ascendent && order=='codigo', 'fa-sort':order!='codigo'}"></i></b></th>
                                     <th class="text-center col-md-2 centro-filtro-table-header-element"><b>Ficha</b></th>
                                 </tr>
                             </thead>
