@@ -16,19 +16,18 @@
 </div>
 
 <div class="wrapper wrapper-content">
-    <div class="row extra-margin-bot25">
+    <div class="row container-margin-bot">
         <div class="col-xs-12 no-padding">
         	<div class="ficha-component">
-	            <div class="ficha-component-title">
-	                <h3 class="no-margins text-center"><b><i class="fa fa-"></i> Datos Generales</b></h3>
+	            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="encabezado_collapsed" (click)="encabezado_collapsed = !encabezado_collapsed">
+	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-id-card-o"></i> Datos Generales</b><i class="fa fa-plus pull-right icon-success" *ngIf="encabezado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!encabezado_collapsed"></i></h3>
 	            </div>
-	            <div class="ficha-component-content">
+	            <div class="ficha-component-content animated fadeIn" [collapse]="encabezado_collapsed">
 	                <div class="row">
 	                	<div class = "col-md-6 col-lg-4">
 			            	<h3 class="text-center"><b><i class="fa fa-map-marker"></i> Ubicación</b></h3>
 			            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
-			                <h4 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}</h4>
-			                <h4 class="text-center bottom-text-margins">Aldea: {{centro_educativo.aldea}}</h4>
+			                <h4 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}, {{centro_educativo.aldea}}</h4>
 				        </div>
 				        <div class = "col-md-6 col-lg-8">
 				        	<div class="row">
@@ -41,8 +40,8 @@
 					        		<input type="text" class="form-control" value="{{centro_educativo.administracion}}" readonly>
 					        	</div>
 					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
-					        		<h3><b><i class="fa fa-map-signs"></i> Zona</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.zona}}" readonly>
+					        		<h3><b><i class="fa fa-map-signs"></i> Etnicidad</b></h3>
+					        		<input type="text" class="form-control" value="{{centro_educativo.pueblo_etnico}}" readonly>
 					        	</div>
 					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
 					        		<h3><b><i class="fa fa-phone"></i> Teléfono</b></h3>
@@ -65,89 +64,280 @@
     </div>
     <div class="row">
         <div class="col-xs-12 no-padding">
-        	<div class="ficha-component">
-	            <div class="ficha-component-title">
-	                <h3 class="no-margins text-center"><b><i class="fa fa-"></i> Estadísticas de Matrícula y Deserción</b></h3>
+        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="estadisticas_collapsed">
+	            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="estadisticas_collapsed" (click)="estadisticas_collapsed = !estadisticas_collapsed">
+	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-bar-chart"></i> Estadísticas</b><i class="fa fa-plus pull-right icon-success" *ngIf="estadisticas_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!estadisticas_collapsed"></i></h3>
 	            </div>
-	            <div class="ficha-component-content">
+	            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="estadisticas_collapsed">
 	            	<div class="row">
 	            		<div class="col-xs-12">
 	            			 <div class="row">
 			                	<div class="col-xs-12">
 			                		<h3 class="text-center"><i class="fa fa-calendar fa-2x"></i></h3>
-			                		<h3 class="text-center"><b>Periodo</b></h3>
+			                		<h4 class="text-center">Periodo</h4>
 			                	</div>
 			                	<div class="col-xs-12">
-					                <div class="no-margins noselect" *ngIf="matricula_grado_genero_years.length>0">
-					                    <h2 class="text-center no-margins"><b><i class="fa fa-arrow-left extra-margin-right-10" [ngClass]="{'year-arrow':year_offset>0, 'year-arrow-inactive':year_offset==0}" (click)="year_offset_left()"></i>{{matricula_grado_genero_years[year_offset]}}</b><i class="fa fa-arrow-right extra-margin-left-10" [ngClass]="{'year-arrow':year_offset < matricula_grado_genero_years.length-1, 'year-arrow-inactive':year_offset >= matricula_grado_genero_years.length-1}" (click)="year_offset_right()"></i></h2>
+					                <div class="no-margins noselect" *ngIf="years.length>0">
+					                    <h2 class="text-center no-margins"><b><i class="fa fa-arrow-left extra-margin-right-10" [ngClass]="{'year-arrow':year_offset>0, 'year-arrow-inactive':year_offset==0}" (click)="year_offset_left()"></i>{{years[year_offset]}}</b><i class="fa fa-arrow-right extra-margin-left-10" [ngClass]="{'year-arrow':year_offset < years.length-1, 'year-arrow-inactive':year_offset >= years.length-1}" (click)="year_offset_right()"></i></h2>
 					                </div>
 			                	</div>
 			                </div>
-	            		</div>
-	            		<div class="col-lg-6">
-	            			<div class="row">
-	            				<div class="col-xs-12">
-	            					<h3 class="text-center extra-margin-top30"><b><i class="fa fa-bar-chart"></i> Matrícula Inicial por Grado y Género</b></h3>
-	            				</div>
-	            			</div>
-	            			<div class="row">
-	            				<div class="col-xs-12">
-			            			<div class="matricula-chart">
-									    <canvas baseChart
-									            [datasets]="barChartData"
-									            [labels]="barChartLabels"
-									            [options]="barChartOptions"
-									            [legend]="barChartLegend"
-									            [chartType]="barChartType"
-									            (chartHover)="chartHovered($event)"
-									            (chartClick)="chartClicked($event)">       
-									    </canvas>
-								  	</div>
-							  	</div>
-						  	</div>
-	            		</div>
-	            		<div class="col-lg-6">
-	            			<div class="row">
-	            				<div class="col-xs-12">
-	            					<h3 class="text-center extra-margin-top30"><b><i class="fa fa-bar-chart"></i> Matrícula Inicial por Grado y Género</b></h3>
-	            				</div>
-	            			</div>
-	            			<div class="row">
-	            				<div class="col-xs-12">
-	            					<div class = "table-responsive">
-							            <table class="table table-bordered table-hover matricula-table table-padding">
-							                <thead>
-							                    <tr>
-							                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
-							                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
-							                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
-							                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
-							                    </tr>
-							                </thead>
-							                <tfoot>
-					                        <tr>
-					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
-					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_femenino()).toLocaleString()}}</b></td>
-					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_masculino()).toLocaleString()}}</b></td>
-					                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(suma_total_masculino() + suma_total_femenino()).toLocaleString()}}</b></td>
-					                        </tr>
-					                        </tfoot>
-							                <tbody>
-							                    <tr *ngFor = "let grado of matricula_selected_year">
-							                        <td class="matricula-table-element text-center">{{grado.nombre_grado}}</td>
-							                        <td class="matricula-table-element text-center">{{(grado.matricula_f).toLocaleString()}}</td>
-							                        <td class="matricula-table-element text-center">{{(grado.matricula_m).toLocaleString()}}</td>
-							                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado.matricula_total).toLocaleString()}}</b></td>
-							                    </tr>
-							                </tbody>
-							            </table>
-							        </div>
-	            				</div>
-	            			</div>
 	            		</div>
 	            	</div>
 	            </div>
 	        </div>
         </div>
     </div>
+    <div class="animated fadeIn" [collapse]="estadisticas_collapsed">
+	    <div class="row">
+	        <div class="col-xs-12 no-padding">
+	        	<div class="ficha-component-no-border-no-radius">
+		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_grado_collapsed = !matricula_grado_collapsed">
+		                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_grado_collapsed"></i></h4>
+		            </div>
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_grado_collapsed">
+		            	<div class="row">
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12">
+				            			<div class="matricula-chart">
+										    <canvas baseChart
+										            [datasets]="grado_graph_data" 
+										            [colors]="grado_graph_colors" 
+										            [labels]="grado_graph_labels"
+										            [options]="grado_graph_options"
+										            [legend]="grado_graph_legend"
+										            [chartType]="grado_graph_type"
+										            (chartHover)="chartHovered($event)">       
+										    </canvas>
+									  	</div>
+								  	</div>
+							  	</div>
+		            		</div>
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12 extra-margin-top31">
+		            					<div class = "table-responsive">
+								            <table class="table table-bordered table-hover matricula-table table-padding">
+								                <thead>
+								                    <tr>
+								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+								                    </tr>
+								                </thead>
+								                <tfoot>
+						                        <tr>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_femenino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino() + grado_suma_total_femenino()).toLocaleString()}}</b></td>
+						                        </tr>
+						                        </tfoot>
+								                <tbody>
+								                    <tr *ngFor = "let grado of grado_selected">
+								                        <td class="matricula-table-element text-center">{{grado.nombre_grado}}</td>
+								                        <td class="matricula-table-element text-center">{{(grado.matricula_f).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center">{{(grado.matricula_m).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado.matricula_total).toLocaleString()}}</b></td>
+								                    </tr>
+								                </tbody>
+								            </table>
+								        </div>
+		            				</div>
+		            			</div>
+		            		</div>
+		            	</div>
+		            </div>
+		        </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-xs-12 no-padding">
+	        	<div class="ficha-component-no-border-no-radius">
+		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_modalidad_collapsed = !matricula_modalidad_collapsed">
+		                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Modalidad</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_modalidad_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_modalidad_collapsed"></i></h4>
+		            </div>
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_modalidad_collapsed">
+		            	<div class="row">
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12">
+				            			<div class="matricula-chart">
+										    <canvas baseChart
+										            [datasets]="modalidad_graph_data"
+										            [labels]="modalidad_graph_labels" 
+										            [colors]="modalidad_graph_colors" 
+										            [options]="modalidad_graph_options" 
+										            [legend]="modalidad_graph_legend"
+										            [chartType]="modalidad_graph_type"
+										            (chartHover)="chartHovered($event)">       
+										    </canvas>
+									  	</div>
+								  	</div>
+							  	</div>
+		            		</div>
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12 extra-margin-top31">
+		            					<div class = "table-responsive">
+								            <table class="table table-bordered table-hover matricula-table table-padding">
+								                <thead>
+								                    <tr>
+								                        <th class="text-center col-md-9 matricula-table-header-element"><b>Modalidad</b></th>
+								                        <th class="text-center col-md-3 matricula-table-header-element"><b>Total</b></th>
+								                    </tr>
+								                </thead>
+								                <tfoot>
+						                        <tr>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total de Matrícula</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad_suma_total_matricula()).toLocaleString()}}</b></td>
+						                        </tr>
+						                        </tfoot>
+								                <tbody>
+								                    <tr *ngFor = "let modalidad of modalidad_selected">
+								                        <td class="matricula-table-element text-center">{{modalidad.modalidad_nombre}}</td>
+								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad.matricula_total).toLocaleString()}}</b></td>
+								                    </tr>
+								                </tbody>
+								            </table>
+								        </div>
+		            				</div>
+		            			</div>
+		            		</div>
+		            	</div>
+		            </div>
+		        </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-xs-12 no-padding">
+	        	<div class="ficha-component-no-border-no-radius">
+		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="desercion_grado_collapsed = !desercion_grado_collapsed">
+		                <h4 class="no-margins text-center noselect"><b> Deserción Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="desercion_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!desercion_grado_collapsed"></i></h4>
+		            </div>
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="desercion_grado_collapsed">
+		            	<div class="row">
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12">
+				            			<div class="matricula-chart">
+										    <canvas baseChart
+										            [datasets]="grado_desercion_graph_data" 
+										            [colors]="grado_desercion_graph_colors" 
+										            [labels]="grado_desercion_graph_labels"
+										            [options]="grado_desercion_graph_options"
+										            [legend]="grado_desercion_graph_legend"
+										            [chartType]="grado_desercion_graph_type"
+										            (chartHover)="chartHovered($event)">       
+										    </canvas>
+									  	</div>
+								  	</div>
+							  	</div>
+		            		</div>
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12 extra-margin-top31">
+		            					<div class = "table-responsive">
+								            <table class="table table-bordered table-hover matricula-table table-padding">
+								                <thead>
+								                    <tr>
+								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+								                    </tr>
+								                </thead>
+								                <tfoot>
+						                        <tr>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino() + grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
+						                        </tr>
+						                        </tfoot>
+								                <tbody>
+								                    <tr *ngFor = "let desercion of grado_desercion_selected">
+								                        <td class="matricula-table-element text-center">{{desercion.nombre_grado}}</td>
+								                        <td class="matricula-table-element text-center">{{(desercion.desercion_f).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center">{{(desercion.desercion_m).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(desercion.desercion_total).toLocaleString()}}</b></td>
+								                    </tr>
+								                </tbody>
+								            </table>
+								        </div>
+		            				</div>
+		            			</div>
+		            		</div>
+		            	</div>
+		            </div>
+		        </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-xs-12 no-padding">
+	        	<div class="ficha-component-no-border-no-radius">
+		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="repitencia_grado_collapsed = !repitencia_grado_collapsed">
+		                <h4 class="no-margins text-center noselect"><b> Repitencia Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="repitencia_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!repitencia_grado_collapsed"></i></h4>
+		            </div>
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="repitencia_grado_collapsed">
+		            	<div class="row">
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12">
+				            			<div class="matricula-chart">
+										    <canvas baseChart
+										            [datasets]="grado_repitencia_graph_data" 
+										            [colors]="grado_repitencia_graph_colors" 
+										            [labels]="grado_repitencia_graph_labels"
+										            [options]="grado_repitencia_graph_options"
+										            [legend]="grado_repitencia_graph_legend"
+										            [chartType]="grado_repitencia_graph_type"
+										            (chartHover)="chartHovered($event)">       
+										    </canvas>
+									  	</div>
+								  	</div>
+							  	</div>
+		            		</div>
+		            		<div class="col-lg-6">
+		            			<div class="row">
+		            				<div class="col-xs-12 extra-margin-top31">
+		            					<div class = "table-responsive">
+								            <table class="table table-bordered table-hover matricula-table table-padding">
+								                <thead>
+								                    <tr>
+								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+								                    </tr>
+								                </thead>
+								                <tfoot>
+						                        <tr>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino()).toLocaleString()}}</b></td>
+						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino() + grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
+						                        </tr>
+						                        </tfoot>
+								                <tbody>
+								                    <tr *ngFor = "let repitencia of grado_repitencia_selected">
+								                        <td class="matricula-table-element text-center">{{repitencia.nombre_grado}}</td>
+								                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_f).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_m).toLocaleString()}}</td>
+								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(repitencia.repitencia_total).toLocaleString()}}</b></td>
+								                    </tr>
+								                </tbody>
+								            </table>
+								        </div>
+		            				</div>
+		            			</div>
+		            		</div>
+		            	</div>
+		            </div>
+		        </div>
+	        </div>
+	    </div>
+	</div>
 </div>

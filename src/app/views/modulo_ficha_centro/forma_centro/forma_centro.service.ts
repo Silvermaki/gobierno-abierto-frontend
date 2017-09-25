@@ -91,6 +91,34 @@ export class FormaCentroService {
       return this.http.post(this.baseUrl+"/get_matricula_grado_genero_centro", bodyString, options).map(this.extractData).catch(this.handleError);
   }
 
+  get_desercion_grado_genero_centro(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_desercion_grado_genero_centro", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
+  get_repitencia_grado_genero_centro(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_repitencia_grado_genero_centro", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
+  get_matricula_modalidad_genero_centro(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_matricula_modalidad_genero_centro", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
+  get_periodos_centro(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_periodos_centro", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
   //Extract data as Json object
   private extractData(res:Response) {
     let body = res.json();

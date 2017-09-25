@@ -3,6 +3,10 @@
     transition:all 0.3s ease;
 }
 
+.hand-on-hover{
+  cursor:pointer;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -131,6 +135,10 @@
 
 .extra-margin-top30{
   margin-top:35px;
+}
+
+.extra-margin-top31{
+  margin-top:31px;
 }
 
 .extra-margin-left{
