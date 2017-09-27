@@ -15,6 +15,39 @@
     </div>
 </div>
 
+<div class="row border-bottom white-bg no-padding">
+    <div class="col-xs-12 no-padding">
+		<div class="menu-container pull-left noselect">
+			<div class="menu-start">
+        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+            </div>
+    		<div class="menu-item expand-item" (click)="expand_all()">
+        		<h4 class="text-center expand-item-icon"><i class="fa fa-plus-circle fa-2x"></i></h4>
+                <h5 class="text-center no-margins">Expandir Todo</h5>
+            </div>
+            <div class="menu-item collapse-item" (click)="collapse_all()">
+        		<h4 class="text-center collapse-item-icon"><i class="fa fa-minus-circle fa-2x"></i></h4>
+                <h5 class="text-center no-margins">Collapsar Todo</h5>
+            </div>
+            <div class="menu-item pdf-item">
+        		<h4 class="text-center pdf-item-icon"><i class="fa fa-file-pdf-o fa-2x"></i></h4>
+                <h5 class="text-center no-margins">Guardar en PDF</h5>
+            </div>
+            <div class="menu-item excel-item">
+        		<h4 class="text-center excel-item-icon"><i class="fa fa-file-excel-o fa-2x"></i></h4>
+                <h5 class="text-center no-margins">Guardar en Excel</h5>
+            </div>
+            <div class="menu-item print-item">
+        		<h4 class="text-center print-item-icon"><i class="fa fa-print fa-2x"></i></h4>
+                <h5 class="text-center no-margins">Imprimir Ficha</h5>
+            </div>
+        </div>
+	</div>
+</div>
+
 <div class="wrapper wrapper-content">
     <div class="row container-margin-bot">
         <div class="col-xs-12 no-padding">
@@ -64,7 +97,61 @@
     </div>
     <div class="row">
         <div class="col-xs-12 no-padding">
-        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="estadisticas_collapsed">
+        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="oferta_collapsed" [class.container-margin-bot]="oferta_collapsed">
+	            <div class="ficha-component-title hand-on-hover" (click)="oferta_collapsed = !oferta_collapsed" [class.title-collapsed]="oferta_collapsed">
+	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-flag"></i> Oferta del Centro</b><i class="fa fa-plus pull-right icon-success" *ngIf="oferta_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!oferta_collapsed"></i></h3>
+	            </div>
+	            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="oferta_collapsed">
+	            	<div class="row">
+	            		<div class="col-xs-12">
+	                		<div class="level-container">
+		                		<div class="level-item green-code" *ngIf="check_nivel(1)">
+			                		<h3 class="text-center"><i class="fa fa-pencil fa-2x"></i></h3>
+			                		<h4 class="text-center">Educación</h4>
+			                		<div class="no-margins" *ngIf="years.length>0">
+					                    <h2 class="text-center no-margins"><b>Prebásica</b></h2>
+					                </div>
+					            </div>
+					            <div class="level-item navy-code" *ngIf="check_nivel(2)">
+			                		<h3 class="text-center"><i class="fa fa-graduation-cap fa-2x"></i></h3>
+			                		<h4 class="text-center">Educación</h4>
+			                		<div class="no-margins" *ngIf="years.length>0">
+					                    <h2 class="text-center no-margins"><b>Básica</b></h2>
+					                </div>
+					            </div>
+					            <div class="level-item orange-code" *ngIf="check_nivel(3)">
+			                		<h3 class="text-center"><i class="fa fa-university fa-2x"></i></h3>
+			                		<h4 class="text-center">Educación</h4>
+			                		<div class="no-margins" *ngIf="years.length>0">
+					                    <h2 class="text-center no-margins"><b>Media</b></h2>
+					                </div>
+					            </div>
+					        </div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
+        </div>
+    </div>
+    <div class="container-margin-bot animated fadeIn" [collapse]="oferta_collapsed">
+	    <div class="row">
+	        <div class="col-xs-12 no-padding">
+	        	<div class="ficha-component-no-border-no-radius">
+		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="modalidades_collapsed = !modalidades_collapsed">
+		                <h4 class="no-margins text-center noselect"><b> Oferta Educativa: Modalidades/Carreras</b><i class="fa fa-plus pull-right icon-success" *ngIf="modalidades_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!modalidades_collapsed"></i></h4>
+		            </div>
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="modalidades_collapsed">
+	            		<div *ngFor="let modalidad of modalidades">
+	            			<h4 class="text-center"><i class="fa fa-check icon-success"></i> {{modalidad.modalidad_nombre}}</h4>
+	            		</div>
+		            </div>
+		        </div>
+	        </div>
+	    </div>
+	</div>
+    <div class="row">
+        <div class="col-xs-12 no-padding">
+        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="estadisticas_collapsed" [class.container-margin-bot]="estadisticas_collapsed">
 	            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="estadisticas_collapsed" (click)="estadisticas_collapsed = !estadisticas_collapsed">
 	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-bar-chart"></i> Estadísticas</b><i class="fa fa-plus pull-right icon-success" *ngIf="estadisticas_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!estadisticas_collapsed"></i></h3>
 	            </div>
@@ -88,7 +175,7 @@
 	        </div>
         </div>
     </div>
-    <div class="animated fadeIn" [collapse]="estadisticas_collapsed">
+    <div class="animated fadeIn container-margin-bot" [collapse]="estadisticas_collapsed">
 	    <div class="row">
 	        <div class="col-xs-12 no-padding">
 	        	<div class="ficha-component-no-border-no-radius">

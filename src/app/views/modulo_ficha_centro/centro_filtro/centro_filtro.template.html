@@ -55,7 +55,6 @@
                                 <span class="input-group-addon"><i class="fa fa-map"></i></span>
                             </div>
                         </div>
-                        <p class="text-danger" *ngIf="!school_filter_form.controls['departamento'].valid && reporte_generado">El departamento es requerido.</p>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5" *ngIf="school_filter_form.controls['departamento'].value!='' &&  school_filter_form.controls['departamento'].value!=undefined && school_filter_form.controls['departamento'].value!=null">
                         <div class="form-group">
@@ -68,7 +67,6 @@
                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                             </div>
                         </div>
-                        <p class="text-danger" *ngIf="!school_filter_form.controls['municipio'].valid && reporte_generado">El municipio es requerido.</p>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5" *ngIf="school_filter_form.controls['departamento'].value!='' &&  school_filter_form.controls['departamento'].value!=undefined && school_filter_form.controls['departamento'].value!=null && school_filter_form.controls['municipio'].value!='' &&  school_filter_form.controls['municipio'].value!=undefined && school_filter_form.controls['municipio'].value!=null" >
                         <div class="form-group">
@@ -81,7 +79,6 @@
                                 <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
                             </div>
                         </div>
-                        <p class="text-danger" *ngIf="!school_filter_form.controls['aldea'].valid && reporte_generado">La aldea es requerida.</p>
                     </div>
                 </div>
                 <div class="row">
@@ -123,7 +120,18 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="col-xs-12 animated fadeIn extra-margin-top5">
+                        <div class="form-group">
+                            <label>Modalidad</label>
+                            <div class = "input-group">
+                                <select [formControl]="school_filter_form.controls['modalidad']" class="form-control input-sm">
+                                    <option value="" selected>Seleccione una opción...</option>
+                                    <option *ngFor="let modalidad of modalidades" [ngValue]="modalidad">{{modalidad.modalidad_nombre}}</option>
+                                </select>
+                                <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn btn-primary extra-margin-top" (click) = "set_filter()" [disabled]="applying_filter">Realizar Búsqueda</button>

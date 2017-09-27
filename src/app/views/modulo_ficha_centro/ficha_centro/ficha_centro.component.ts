@@ -27,6 +27,11 @@ export class FichaCentroComponent implements OnInit{
     private matricula_modalidad_collapsed:boolean;
     private desercion_grado_collapsed:boolean;
     private repitencia_grado_collapsed:boolean;
+    private modalidades_collapsed:boolean;
+    private oferta_collapsed:boolean;
+    private niveles_collapsed:boolean;
+    private niveles:any;
+    private modalidades:any;
 
     private grado_matricula:any[];
     private grado_selected:any[];
@@ -69,6 +74,8 @@ export class FichaCentroComponent implements OnInit{
 	constructor(private router:Router, private route: ActivatedRoute, private service: FormaCentroService, @Inject(DOCUMENT) private doc: Document){
 		this.centro_educativo = {};
         this.years = [];
+        this.niveles = [];
+        this.modalidades = [];
         this.year_offset = 0;
         this.estadisticas_collapsed = false;
         this.encabezado_collapsed = false;
@@ -76,6 +83,9 @@ export class FichaCentroComponent implements OnInit{
         this.matricula_modalidad_collapsed = false;
         this.desercion_grado_collapsed = false;
         this.repitencia_grado_collapsed = false;
+        this.oferta_collapsed = true;
+        this.modalidades_collapsed = false;
+        this.niveles_collapsed = false;
 
         this.grado_desercion = [];
         this.grado_desercion_selected = [];
@@ -203,6 +213,8 @@ export class FichaCentroComponent implements OnInit{
 	    });
 	    this.get_ficha_centro();
         this.get_periodos();
+        this.get_niveles();
+        this.get_modalidades();
     }
 
 
@@ -249,6 +261,56 @@ export class FichaCentroComponent implements OnInit{
                 }else{
                     this.years = [];
                     this.year_offset = 0;
+                }
+               
+            }
+        );
+    }
+
+    check_nivel(id_niv){
+        for(var i = 0;i<this.niveles.length;i++){
+            if(this.niveles[i].nivel_id == id_niv){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    get_niveles(){
+        var load = {centro_id:this.id};
+        var response;
+        this.service.get_niveles_centro(load).subscribe(
+            //store response
+            data => response = data,
+            err => console.log(err),
+            ()=> {
+                if(response){//if not null
+                    this.niveles = response;
+                }else{
+                    this.niveles = [];
+                }
+               
+            }
+        );
+    }
+
+    get_modalidades(){
+        var load = {centro_id:this.id};
+        var response;
+        this.service.get_modalidades_centro(load).subscribe(
+            //store response
+            data => response = data,
+            err => console.log(err),
+            ()=> {
+                if(response){//if not null
+                    this.modalidades = response;
+                    for(var i = 0;i<this.modalidades.length;i++){
+                        if(this.modalidades[i].modalidad_nombre == "NO APLICA"){
+                            this.modalidades[i].modalidad_nombre = "EDUCACIÓN SIN MODALIDAD ESPECÍFICA";
+                        }
+                    }
+                }else{
+                    this.modalidades = [];
                 }
                
             }
@@ -529,6 +591,30 @@ export class FichaCentroComponent implements OnInit{
             acum = acum + this.modalidad_selected[i].matricula_total;
         }
         return acum;
+    }
+
+    expand_all(){
+        this.estadisticas_collapsed = false;
+        this.encabezado_collapsed = false;
+        this.matricula_grado_collapsed = false;
+        this.matricula_modalidad_collapsed = false;
+        this.desercion_grado_collapsed = false;
+        this.repitencia_grado_collapsed = false;
+        this.oferta_collapsed = false;
+        this.modalidades_collapsed = false;
+        this.niveles_collapsed = false;
+    }
+
+    collapse_all(){
+        this.estadisticas_collapsed = true;
+        this.encabezado_collapsed = true;
+        this.matricula_grado_collapsed = true;
+        this.matricula_modalidad_collapsed = true;
+        this.desercion_grado_collapsed = true;
+        this.repitencia_grado_collapsed = true;
+        this.oferta_collapsed = true;
+        this.modalidades_collapsed = true;
+        this.niveles_collapsed = true;
     }
 
     select_departamento_url(departamento_id:number){

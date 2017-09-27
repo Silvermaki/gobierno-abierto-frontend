@@ -88,7 +88,7 @@ export class CentroFiltroComponent implements OnInit{
 		this.get_administraciones();
 		this.get_departamentos();
 		this.get_niveles();
-		//this.get_modalidades();
+		this.get_modalidades();
 
     }
 

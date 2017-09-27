@@ -13,6 +13,104 @@
   border-radius: 5px !important;
 }
 
+.menu-container{
+
+}
+
+.menu-start{
+  display:inline-block;
+  vertical-align:top;
+  width:20px;
+  height:70px;
+  padding:5px;
+  color:#E5E8E8;
+}
+
+.menu-item{
+  display:inline-block;
+  vertical-align:top;
+  width:70px;
+  height:70px;
+  padding:5px;
+  cursor:pointer;
+}
+
+.menu-item:hover{
+  background-color:#F4F6F6;
+}
+
+.expand-item-icon{
+  color:#2980B9;
+  margin-bottom:5px !important;
+  margin-top:0px !important;
+  margin-left:0px !important;
+  margin-right:0px !important;
+}
+
+.collapse-item-icon{
+  color:#CD6155;
+  margin-bottom:5px !important;
+  margin-top:0px !important;
+  margin-left:0px !important;
+  margin-right:0px !important;
+}
+
+.print-item-icon{
+  color:#808B96;
+  margin-bottom:5px !important;
+  margin-top:0px !important;
+  margin-left:0px !important;
+  margin-right:0px !important;
+}
+
+.pdf-item-icon{
+  color:#E59866;
+  margin-bottom:5px !important;
+  margin-top:0px !important;
+  margin-left:0px !important;
+  margin-right:0px !important;
+}
+
+.excel-item-icon{
+  color:#229954;
+  margin-bottom:5px !important;
+  margin-top:0px !important;
+  margin-left:0px !important;
+  margin-right:0px !important;
+}
+
+.expand-item{
+
+}
+
+.collapse-item{
+
+}
+
+.print-item{
+
+}
+
+.pdf-item{
+
+}
+
+.excel-item{
+
+}
+
+.level-container{
+  text-align:center;
+}
+
+.level-item{
+  display:inline-block;
+  width:120px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+
 
 .ficha-component-content{
   border-radius: 0px 0px 5px 5px;
