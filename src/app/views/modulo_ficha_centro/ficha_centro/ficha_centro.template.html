@@ -1,430 +1,503 @@
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2><i class="fa fa-graduation-cap"></i> <b>Ficha de Centro Educativo</b></h2>
-        <ol class="breadcrumb">
-            <li>
-                Inicio
-            </li>
-            <li>
-                <a [routerLink]="['/plataforma/buscar_centro']">Ficha de Centro Educativo</a>
-            </li>
-            <li class="active">
-                <strong>{{centro_educativo.nombre_centro}}</strong>
-            </li>
-        </ol>
-    </div>
-</div>
-
-<div class="row border-bottom white-bg no-padding">
-    <div class="col-xs-12 no-padding">
-		<div class="menu-container pull-left noselect">
-			<div class="menu-start">
-        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
-        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
-        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
-        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
-            </div>
-    		<div class="menu-item expand-item" (click)="expand_all()">
-        		<h4 class="text-center expand-item-icon"><i class="fa fa-plus-circle fa-2x"></i></h4>
-                <h5 class="text-center no-margins">Expandir Todo</h5>
-            </div>
-            <div class="menu-item collapse-item" (click)="collapse_all()">
-        		<h4 class="text-center collapse-item-icon"><i class="fa fa-minus-circle fa-2x"></i></h4>
-                <h5 class="text-center no-margins">Collapsar Todo</h5>
-            </div>
-            <div class="menu-item pdf-item">
-        		<h4 class="text-center pdf-item-icon"><i class="fa fa-file-pdf-o fa-2x"></i></h4>
-                <h5 class="text-center no-margins">Guardar en PDF</h5>
-            </div>
-            <div class="menu-item excel-item">
-        		<h4 class="text-center excel-item-icon"><i class="fa fa-file-excel-o fa-2x"></i></h4>
-                <h5 class="text-center no-margins">Guardar en Excel</h5>
-            </div>
-            <div class="menu-item print-item">
-        		<h4 class="text-center print-item-icon"><i class="fa fa-print fa-2x"></i></h4>
-                <h5 class="text-center no-margins">Imprimir Ficha</h5>
-            </div>
-        </div>
-	</div>
-</div>
-
-<div class="wrapper wrapper-content">
-    <div class="row container-margin-bot">
-        <div class="col-xs-12 no-padding">
-        	<div class="ficha-component">
-	            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="encabezado_collapsed" (click)="encabezado_collapsed = !encabezado_collapsed">
-	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-id-card-o"></i> Datos Generales</b><i class="fa fa-plus pull-right icon-success" *ngIf="encabezado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!encabezado_collapsed"></i></h3>
-	            </div>
-	            <div class="ficha-component-content animated fadeIn" [collapse]="encabezado_collapsed">
-	                <div class="row">
-	                	<div class = "col-md-6 col-lg-4">
-			            	<h3 class="text-center"><b><i class="fa fa-map-marker"></i> Ubicación</b></h3>
-			            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
-			                <h4 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}, {{centro_educativo.aldea}}</h4>
-				        </div>
-				        <div class = "col-md-6 col-lg-8">
-				        	<div class="row">
-					        	<div class="col-sm-6  col-md-6 col-lg-4 extra-margin-bot">
-					        		<h3><b><i class="fa fa-codepen"></i> Código</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.codigo_centro}}" readonly>
-					        	</div>
-					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
-					        		<h3><b><i class="fa fa-balance-scale"></i> Administración</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.administracion}}" readonly>
-					        	</div>
-					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
-					        		<h3><b><i class="fa fa-map-signs"></i> Etnicidad</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.pueblo_etnico}}" readonly>
-					        	</div>
-					        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
-					        		<h3><b><i class="fa fa-phone"></i> Teléfono</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.tel_centro}}" readonly>
-					        	</div>
-					        	<div class="col-sm-12 col-md-12 col-lg-8 extra-margin-bot">
-					        		<h3><b><i class="fa fa-envelope"></i> Correo Electrónico</b></h3>
-					        		<input type="text" class="form-control" value="{{centro_educativo.correo_centro}}" readonly>
-					        	</div>
-					        	<div class="col-md-12">
-					        		<h3><b><i class="fa fa-home"></i> Dirección</b></h3>
-					        		<textarea type="text" class="form-control" value="{{centro_educativo.direccion}}" readonly rows="3"></textarea>
-					        	</div>
-					        </div>
-				        </div>
-	                </div>
-	            </div>
-	        </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 no-padding">
-        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="oferta_collapsed" [class.container-margin-bot]="oferta_collapsed">
-	            <div class="ficha-component-title hand-on-hover" (click)="oferta_collapsed = !oferta_collapsed" [class.title-collapsed]="oferta_collapsed">
-	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-flag"></i> Oferta del Centro</b><i class="fa fa-plus pull-right icon-success" *ngIf="oferta_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!oferta_collapsed"></i></h3>
-	            </div>
-	            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="oferta_collapsed">
-	            	<div class="row">
-	            		<div class="col-xs-12">
-	                		<div class="level-container">
-		                		<div class="level-item green-code" *ngIf="check_nivel(1)">
-			                		<h3 class="text-center"><i class="fa fa-pencil fa-2x"></i></h3>
-			                		<h4 class="text-center">Educación</h4>
-			                		<div class="no-margins" *ngIf="years.length>0">
-					                    <h2 class="text-center no-margins"><b>Prebásica</b></h2>
-					                </div>
-					            </div>
-					            <div class="level-item navy-code" *ngIf="check_nivel(2)">
-			                		<h3 class="text-center"><i class="fa fa-graduation-cap fa-2x"></i></h3>
-			                		<h4 class="text-center">Educación</h4>
-			                		<div class="no-margins" *ngIf="years.length>0">
-					                    <h2 class="text-center no-margins"><b>Básica</b></h2>
-					                </div>
-					            </div>
-					            <div class="level-item orange-code" *ngIf="check_nivel(3)">
-			                		<h3 class="text-center"><i class="fa fa-university fa-2x"></i></h3>
-			                		<h4 class="text-center">Educación</h4>
-			                		<div class="no-margins" *ngIf="years.length>0">
-					                    <h2 class="text-center no-margins"><b>Media</b></h2>
-					                </div>
-					            </div>
-					        </div>
-	            		</div>
-	            	</div>
-	            </div>
-	        </div>
-        </div>
-    </div>
-    <div class="container-margin-bot animated fadeIn" [collapse]="oferta_collapsed">
-	    <div class="row">
-	        <div class="col-xs-12 no-padding">
-	        	<div class="ficha-component-no-border-no-radius">
-		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="modalidades_collapsed = !modalidades_collapsed">
-		                <h4 class="no-margins text-center noselect"><b> Oferta Educativa: Modalidades/Carreras</b><i class="fa fa-plus pull-right icon-success" *ngIf="modalidades_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!modalidades_collapsed"></i></h4>
-		            </div>
-		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="modalidades_collapsed">
-	            		<div *ngFor="let modalidad of modalidades">
-	            			<h4 class="text-center"><i class="fa fa-check icon-success"></i> {{modalidad.modalidad_nombre}}</h4>
-	            		</div>
-		            </div>
-		        </div>
-	        </div>
+<div id="wtf" class="gray-bg">
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2><i class="fa fa-graduation-cap"></i> <b>Ficha de Centro Educativo</b></h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                Inicio
+	            </li>
+	            <li>
+	                <a [routerLink]="['/plataforma/buscar_centro']">Ficha de Centro Educativo</a>
+	            </li>
+	            <li class="active">
+	                <strong>{{centro_educativo.nombre_centro}}</strong>
+	            </li>
+	        </ol>
 	    </div>
 	</div>
-    <div class="row">
-        <div class="col-xs-12 no-padding">
-        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="estadisticas_collapsed" [class.container-margin-bot]="estadisticas_collapsed">
-	            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="estadisticas_collapsed" (click)="estadisticas_collapsed = !estadisticas_collapsed">
-	                <h3 class="no-margins text-center noselect"><b><i class="fa fa-bar-chart"></i> Estadísticas</b><i class="fa fa-plus pull-right icon-success" *ngIf="estadisticas_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!estadisticas_collapsed"></i></h3>
+
+	<div class="row border-bottom white-bg no-padding">
+	    <div class="col-xs-12 no-padding">
+			<div class="menu-container pull-left noselect">
+				<div class="menu-start">
+	        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+	        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+	        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
+	        		<h4 class="no-margins"><i class="fa fa-bars"></i></h4>
 	            </div>
-	            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="estadisticas_collapsed">
-	            	<div class="row">
-	            		<div class="col-xs-12">
-	            			 <div class="row">
-			                	<div class="col-xs-12">
-			                		<h3 class="text-center"><i class="fa fa-calendar fa-2x"></i></h3>
-			                		<h4 class="text-center">Periodo</h4>
-			                	</div>
-			                	<div class="col-xs-12">
-					                <div class="no-margins noselect" *ngIf="years.length>0">
-					                    <h2 class="text-center no-margins"><b><i class="fa fa-arrow-left extra-margin-right-10" [ngClass]="{'year-arrow':year_offset>0, 'year-arrow-inactive':year_offset==0}" (click)="year_offset_left()"></i>{{years[year_offset]}}</b><i class="fa fa-arrow-right extra-margin-left-10" [ngClass]="{'year-arrow':year_offset < years.length-1, 'year-arrow-inactive':year_offset >= years.length-1}" (click)="year_offset_right()"></i></h2>
-					                </div>
-			                	</div>
-			                </div>
-	            		</div>
-	            	</div>
+	    		<div class="menu-item expand-item" (click)="expand_all()">
+	        		<h4 class="text-center expand-item-icon"><i class="fa fa-plus-circle fa-2x"></i></h4>
+	                <h5 class="text-center no-margins">Expandir Todo</h5>
+	            </div>
+	            <div class="menu-item collapse-item" (click)="collapse_all()">
+	        		<h4 class="text-center collapse-item-icon"><i class="fa fa-minus-circle fa-2x"></i></h4>
+	                <h5 class="text-center no-margins">Collapsar Todo</h5>
+	            </div>
+	            <div class="menu-item pdf-item" (click)="generate_pdf()">
+	        		<h4 class="text-center pdf-item-icon"><i class="fa fa-file-pdf-o fa-2x"></i></h4>
+	                <h5 class="text-center no-margins">Descargar en PDF</h5>
+	            </div>
+	            <div class="menu-item excel-item">
+	        		<h4 class="text-center excel-item-icon"><i class="fa fa-file-excel-o fa-2x"></i></h4>
+	                <h5 class="text-center no-margins">Guardar en Excel</h5>
+	            </div>
+	            <div class="menu-item print-item" >
+	        		<h4 class="text-center print-item-icon"><i class="fa fa-print fa-2x"></i></h4>
+	                <h5 class="text-center no-margins">Imprimir Ficha</h5>
 	            </div>
 	        </div>
-        </div>
-    </div>
-    <div class="animated fadeIn container-margin-bot" [collapse]="estadisticas_collapsed">
-	    <div class="row">
+		</div>
+	</div>
+
+	<div class="wrapper wrapper-content">
+	    <div class="row container-margin-bot">
 	        <div class="col-xs-12 no-padding">
-	        	<div class="ficha-component-no-border-no-radius">
-		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_grado_collapsed = !matricula_grado_collapsed">
-		                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_grado_collapsed"></i></h4>
+	        	<div class="ficha-component">
+		            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="encabezado_collapsed" (click)="encabezado_collapsed = !encabezado_collapsed">
+		                <h3 class="no-margins text-center noselect"><b><i class="fa fa-id-card-o"></i> Datos Generales</b><i class="fa fa-plus pull-right icon-success" *ngIf="encabezado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!encabezado_collapsed"></i></h3>
 		            </div>
-		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_grado_collapsed">
-		            	<div class="row">
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12">
-				            			<div class="matricula-chart">
-										    <canvas baseChart
-										            [datasets]="grado_graph_data" 
-										            [colors]="grado_graph_colors" 
-										            [labels]="grado_graph_labels"
-										            [options]="grado_graph_options"
-										            [legend]="grado_graph_legend"
-										            [chartType]="grado_graph_type"
-										            (chartHover)="chartHovered($event)">       
-										    </canvas>
-									  	</div>
-								  	</div>
-							  	</div>
-		            		</div>
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12 extra-margin-top31">
-		            					<div class = "table-responsive">
-								            <table class="table table-bordered table-hover matricula-table table-padding">
-								                <thead>
-								                    <tr>
-								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
-								                    </tr>
-								                </thead>
-								                <tfoot>
-						                        <tr>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_femenino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino() + grado_suma_total_femenino()).toLocaleString()}}</b></td>
-						                        </tr>
-						                        </tfoot>
-								                <tbody>
-								                    <tr *ngFor = "let grado of grado_selected">
-								                        <td class="matricula-table-element text-center">{{grado.nombre_grado}}</td>
-								                        <td class="matricula-table-element text-center">{{(grado.matricula_f).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center">{{(grado.matricula_m).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado.matricula_total).toLocaleString()}}</b></td>
-								                    </tr>
-								                </tbody>
-								            </table>
-								        </div>
-		            				</div>
-		            			</div>
-		            		</div>
-		            	</div>
+		            <div class="ficha-component-content animated fadeIn" [collapse]="encabezado_collapsed">
+		                <div class="row">
+		                	<div class = "col-md-6 col-lg-4">
+				            	<h3 class="text-center"><b><i class="fa fa-map-marker"></i> Ubicación</b></h3>
+				            	<img class = "map-logo" src="{{'./assets/images/departamentos/'+select_departamento_url(centro_educativo.departamento_codigo)+'.png'}}">
+				                <h4 class="text-center">{{centro_educativo.departamento}}, {{centro_educativo.municipio}}, {{centro_educativo.aldea}}</h4>
+					        </div>
+					        <div class = "col-md-6 col-lg-8">
+					        	<div class="row">
+						        	<div class="col-sm-6  col-md-6 col-lg-4 extra-margin-bot">
+						        		<h3><b><i class="fa fa-codepen"></i> Código</b></h3>
+						        		<input type="text" class="form-control" value="{{centro_educativo.codigo_centro}}" readonly>
+						        	</div>
+						        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+						        		<h3><b><i class="fa fa-balance-scale"></i> Administración</b></h3>
+						        		<input type="text" class="form-control" value="{{centro_educativo.administracion}}" readonly>
+						        	</div>
+						        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+						        		<h3><b><i class="fa fa-map-signs"></i> Etnicidad</b></h3>
+						        		<input type="text" class="form-control" value="{{centro_educativo.pueblo_etnico}}" readonly>
+						        	</div>
+						        	<div class="col-sm-6 col-md-6 col-lg-4 extra-margin-bot">
+						        		<h3><b><i class="fa fa-phone"></i> Teléfono</b></h3>
+						        		<input type="text" class="form-control" value="{{centro_educativo.tel_centro}}" readonly>
+						        	</div>
+						        	<div class="col-sm-12 col-md-12 col-lg-8 extra-margin-bot">
+						        		<h3><b><i class="fa fa-envelope"></i> Correo Electrónico</b></h3>
+						        		<input type="text" class="form-control" value="{{centro_educativo.correo_centro}}" readonly>
+						        	</div>
+						        	<div class="col-md-12">
+						        		<h3><b><i class="fa fa-home"></i> Dirección</b></h3>
+						        		<textarea type="text" class="form-control" value="{{centro_educativo.direccion}}" readonly rows="3"></textarea>
+						        	</div>
+						        </div>
+					        </div>
+		                </div>
 		            </div>
 		        </div>
 	        </div>
 	    </div>
 	    <div class="row">
 	        <div class="col-xs-12 no-padding">
-	        	<div class="ficha-component-no-border-no-radius">
-		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_modalidad_collapsed = !matricula_modalidad_collapsed">
-		                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Modalidad</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_modalidad_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_modalidad_collapsed"></i></h4>
+	        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="oferta_collapsed" [class.container-margin-bot]="oferta_collapsed">
+		            <div class="ficha-component-title hand-on-hover" (click)="oferta_collapsed = !oferta_collapsed" [class.title-collapsed]="oferta_collapsed">
+		                <h3 class="no-margins text-center noselect"><b><i class="fa fa-flag"></i> Oferta del Centro</b><i class="fa fa-plus pull-right icon-success" *ngIf="oferta_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!oferta_collapsed"></i></h3>
 		            </div>
-		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_modalidad_collapsed">
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="oferta_collapsed">
 		            	<div class="row">
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12">
-				            			<div class="matricula-chart">
-										    <canvas baseChart
-										            [datasets]="modalidad_graph_data"
-										            [labels]="modalidad_graph_labels" 
-										            [colors]="modalidad_graph_colors" 
-										            [options]="modalidad_graph_options" 
-										            [legend]="modalidad_graph_legend"
-										            [chartType]="modalidad_graph_type"
-										            (chartHover)="chartHovered($event)">       
-										    </canvas>
-									  	</div>
-								  	</div>
-							  	</div>
-		            		</div>
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12 extra-margin-top31">
-		            					<div class = "table-responsive">
-								            <table class="table table-bordered table-hover matricula-table table-padding">
-								                <thead>
-								                    <tr>
-								                        <th class="text-center col-md-9 matricula-table-header-element"><b>Modalidad</b></th>
-								                        <th class="text-center col-md-3 matricula-table-header-element"><b>Total</b></th>
-								                    </tr>
-								                </thead>
-								                <tfoot>
-						                        <tr>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total de Matrícula</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad_suma_total_matricula()).toLocaleString()}}</b></td>
-						                        </tr>
-						                        </tfoot>
-								                <tbody>
-								                    <tr *ngFor = "let modalidad of modalidad_selected">
-								                        <td class="matricula-table-element text-center">{{modalidad.modalidad_nombre}}</td>
-								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad.matricula_total).toLocaleString()}}</b></td>
-								                    </tr>
-								                </tbody>
-								            </table>
-								        </div>
-		            				</div>
-		            			</div>
+		            		<div class="col-xs-12">
+		                		<div class="level-container">
+			                		<div class="level-item green-code" *ngIf="check_nivel(1)">
+				                		<h3 class="text-center"><i class="fa fa-pencil fa-2x"></i></h3>
+				                		<h4 class="text-center">Educación</h4>
+				                		<div class="no-margins" *ngIf="years.length>0">
+						                    <h2 class="text-center no-margins"><b>Prebásica</b></h2>
+						                </div>
+						            </div>
+						            <div class="level-item navy-code" *ngIf="check_nivel(2)">
+				                		<h3 class="text-center"><i class="fa fa-graduation-cap fa-2x"></i></h3>
+				                		<h4 class="text-center">Educación</h4>
+				                		<div class="no-margins" *ngIf="years.length>0">
+						                    <h2 class="text-center no-margins"><b>Básica</b></h2>
+						                </div>
+						            </div>
+						            <div class="level-item orange-code" *ngIf="check_nivel(3)">
+				                		<h3 class="text-center"><i class="fa fa-university fa-2x"></i></h3>
+				                		<h4 class="text-center">Educación</h4>
+				                		<div class="no-margins" *ngIf="years.length>0">
+						                    <h2 class="text-center no-margins"><b>Media</b></h2>
+						                </div>
+						            </div>
+						        </div>
 		            		</div>
 		            	</div>
 		            </div>
 		        </div>
 	        </div>
 	    </div>
+	    <div class="container-margin-bot animated fadeIn" [collapse]="oferta_collapsed">
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="modalidades_collapsed = !modalidades_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Oferta Educativa: Modalidades/Carreras</b><i class="fa fa-plus pull-right icon-success" *ngIf="modalidades_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!modalidades_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="modalidades_collapsed">
+		            		<div *ngFor="let modalidad of modalidades">
+		            			<h4 class="text-center"><i class="fa fa-check icon-success"></i> {{modalidad.modalidad_nombre}}</h4>
+		            		</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div>
 	    <div class="row">
 	        <div class="col-xs-12 no-padding">
-	        	<div class="ficha-component-no-border-no-radius">
-		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="desercion_grado_collapsed = !desercion_grado_collapsed">
-		                <h4 class="no-margins text-center noselect"><b> Deserción Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="desercion_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!desercion_grado_collapsed"></i></h4>
+	        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="estadisticas_collapsed" [class.container-margin-bot]="estadisticas_collapsed">
+		            <div class="ficha-component-title hand-on-hover" [class.title-collapsed]="estadisticas_collapsed" (click)="estadisticas_collapsed = !estadisticas_collapsed">
+		                <h3 class="no-margins text-center noselect"><b><i class="fa fa-bar-chart"></i> Estadísticas de Matrícula</b><i class="fa fa-plus pull-right icon-success" *ngIf="estadisticas_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!estadisticas_collapsed"></i></h3>
 		            </div>
-		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="desercion_grado_collapsed">
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="estadisticas_collapsed">
 		            	<div class="row">
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12">
-				            			<div class="matricula-chart">
-										    <canvas baseChart
-										            [datasets]="grado_desercion_graph_data" 
-										            [colors]="grado_desercion_graph_colors" 
-										            [labels]="grado_desercion_graph_labels"
-										            [options]="grado_desercion_graph_options"
-										            [legend]="grado_desercion_graph_legend"
-										            [chartType]="grado_desercion_graph_type"
-										            (chartHover)="chartHovered($event)">       
-										    </canvas>
-									  	</div>
-								  	</div>
-							  	</div>
-		            		</div>
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12 extra-margin-top31">
-		            					<div class = "table-responsive">
-								            <table class="table table-bordered table-hover matricula-table table-padding">
-								                <thead>
-								                    <tr>
-								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
-								                    </tr>
-								                </thead>
-								                <tfoot>
-						                        <tr>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino() + grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
-						                        </tr>
-						                        </tfoot>
-								                <tbody>
-								                    <tr *ngFor = "let desercion of grado_desercion_selected">
-								                        <td class="matricula-table-element text-center">{{desercion.nombre_grado}}</td>
-								                        <td class="matricula-table-element text-center">{{(desercion.desercion_f).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center">{{(desercion.desercion_m).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(desercion.desercion_total).toLocaleString()}}</b></td>
-								                    </tr>
-								                </tbody>
-								            </table>
-								        </div>
-		            				</div>
-		            			</div>
+		            		<div class="col-xs-12">
+		            			 <div class="row">
+				                	<div class="col-xs-12">
+				                		<h3 class="text-center"><i class="fa fa-calendar fa-2x"></i></h3>
+				                		<h4 class="text-center">Periodo</h4>
+				                	</div>
+				                	<div class="col-xs-12">
+						                <div class="no-margins noselect" *ngIf="years.length>0">
+						                    <h2 class="text-center no-margins"><b><i class="fa fa-arrow-left extra-margin-right-10" [ngClass]="{'year-arrow':year_offset>0, 'year-arrow-inactive':year_offset==0}" (click)="year_offset_left()"></i>{{years[year_offset]}}</b><i class="fa fa-arrow-right extra-margin-left-10" [ngClass]="{'year-arrow':year_offset < years.length-1, 'year-arrow-inactive':year_offset >= years.length-1}" (click)="year_offset_right()"></i></h2>
+						                </div>
+				                	</div>
+				                </div>
 		            		</div>
 		            	</div>
 		            </div>
 		        </div>
 	        </div>
 	    </div>
-	    <div class="row">
+	    <div class="animated fadeIn container-margin-bot" [collapse]="estadisticas_collapsed">
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_grado_collapsed = !matricula_grado_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_grado_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_grado_collapsed">
+			            	<div class="row">
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12">
+					            			<div class="matricula-chart">
+											    <canvas baseChart
+											            [datasets]="grado_graph_data" 
+											            [colors]="grado_graph_colors" 
+											            [labels]="grado_graph_labels"
+											            [options]="grado_graph_options"
+											            [legend]="grado_graph_legend"
+											            [chartType]="grado_graph_type"
+											            (chartHover)="chartHovered($event)">       
+											    </canvas>
+										  	</div>
+									  	</div>
+								  	</div>
+			            		</div>
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12 extra-margin-top31">
+			            					<div class = "table-responsive">
+									            <table class="table table-bordered table-hover matricula-table table-padding">
+									                <thead>
+									                    <tr>
+									                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+									                    </tr>
+									                </thead>
+									                <tfoot>
+							                        <tr>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_femenino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_suma_total_masculino() + grado_suma_total_femenino()).toLocaleString()}}</b></td>
+							                        </tr>
+							                        </tfoot>
+									                <tbody>
+									                    <tr *ngFor = "let grado of grado_selected">
+									                        <td class="matricula-table-element text-center">{{grado.nombre_grado}}</td>
+									                        <td class="matricula-table-element text-center">{{(grado.matricula_f).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center">{{(grado.matricula_m).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado.matricula_total).toLocaleString()}}</b></td>
+									                    </tr>
+									                </tbody>
+									            </table>
+									        </div>
+			            				</div>
+			            			</div>
+			            		</div>
+			            	</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="matricula_modalidad_collapsed = !matricula_modalidad_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Matrícula Inicial por Modalidad</b><i class="fa fa-plus pull-right icon-success" *ngIf="matricula_modalidad_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!matricula_modalidad_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="matricula_modalidad_collapsed">
+			            	<div class="row">
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12">
+					            			<div class="matricula-chart">
+											    <canvas baseChart
+											            [datasets]="modalidad_graph_data"
+											            [labels]="modalidad_graph_labels" 
+											            [colors]="modalidad_graph_colors" 
+											            [options]="modalidad_graph_options" 
+											            [legend]="modalidad_graph_legend"
+											            [chartType]="modalidad_graph_type"
+											            (chartHover)="chartHovered($event)">       
+											    </canvas>
+										  	</div>
+									  	</div>
+								  	</div>
+			            		</div>
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12 extra-margin-top31">
+			            					<div class = "table-responsive">
+									            <table class="table table-bordered table-hover matricula-table table-padding">
+									                <thead>
+									                    <tr>
+									                        <th class="text-center col-md-9 matricula-table-header-element"><b>Modalidad</b></th>
+									                        <th class="text-center col-md-3 matricula-table-header-element"><b>Total</b></th>
+									                    </tr>
+									                </thead>
+									                <tfoot>
+							                        <tr>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total de Matrícula</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad_suma_total_matricula()).toLocaleString()}}</b></td>
+							                        </tr>
+							                        </tfoot>
+									                <tbody>
+									                    <tr *ngFor = "let modalidad of modalidad_selected">
+									                        <td class="matricula-table-element text-center">{{modalidad.modalidad_nombre}}</td>
+									                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(modalidad.matricula_total).toLocaleString()}}</b></td>
+									                    </tr>
+									                </tbody>
+									            </table>
+									        </div>
+			            				</div>
+			            			</div>
+			            		</div>
+			            	</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="desercion_grado_collapsed = !desercion_grado_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Deserción Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="desercion_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!desercion_grado_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="desercion_grado_collapsed">
+			            	<div class="row">
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12">
+					            			<div class="matricula-chart">
+											    <canvas baseChart
+											            [datasets]="grado_desercion_graph_data" 
+											            [colors]="grado_desercion_graph_colors" 
+											            [labels]="grado_desercion_graph_labels"
+											            [options]="grado_desercion_graph_options"
+											            [legend]="grado_desercion_graph_legend"
+											            [chartType]="grado_desercion_graph_type"
+											            (chartHover)="chartHovered($event)">       
+											    </canvas>
+										  	</div>
+									  	</div>
+								  	</div>
+			            		</div>
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12 extra-margin-top31">
+			            					<div class = "table-responsive">
+									            <table class="table table-bordered table-hover matricula-table table-padding">
+									                <thead>
+									                    <tr>
+									                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+									                    </tr>
+									                </thead>
+									                <tfoot>
+							                        <tr>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_desercion_suma_total_masculino() + grado_desercion_suma_total_femenino()).toLocaleString()}}</b></td>
+							                        </tr>
+							                        </tfoot>
+									                <tbody>
+									                    <tr *ngFor = "let desercion of grado_desercion_selected">
+									                        <td class="matricula-table-element text-center">{{desercion.nombre_grado}}</td>
+									                        <td class="matricula-table-element text-center">{{(desercion.desercion_f).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center">{{(desercion.desercion_m).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(desercion.desercion_total).toLocaleString()}}</b></td>
+									                    </tr>
+									                </tbody>
+									            </table>
+									        </div>
+			            				</div>
+			            			</div>
+			            		</div>
+			            	</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="repitencia_grado_collapsed = !repitencia_grado_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Repitencia Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="repitencia_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!repitencia_grado_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="repitencia_grado_collapsed">
+			            	<div class="row">
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12">
+					            			<div class="matricula-chart">
+											    <canvas baseChart
+											            [datasets]="grado_repitencia_graph_data" 
+											            [colors]="grado_repitencia_graph_colors" 
+											            [labels]="grado_repitencia_graph_labels"
+											            [options]="grado_repitencia_graph_options"
+											            [legend]="grado_repitencia_graph_legend"
+											            [chartType]="grado_repitencia_graph_type"
+											            (chartHover)="chartHovered($event)">       
+											    </canvas>
+										  	</div>
+									  	</div>
+								  	</div>
+			            		</div>
+			            		<div class="col-lg-6">
+			            			<div class="row">
+			            				<div class="col-xs-12 extra-margin-top31">
+			            					<div class = "table-responsive">
+									            <table class="table table-bordered table-hover matricula-table table-padding">
+									                <thead>
+									                    <tr>
+									                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
+									                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
+									                    </tr>
+									                </thead>
+									                <tfoot>
+							                        <tr>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino()).toLocaleString()}}</b></td>
+							                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino() + grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
+							                        </tr>
+							                        </tfoot>
+									                <tbody>
+									                    <tr *ngFor = "let repitencia of grado_repitencia_selected">
+									                        <td class="matricula-table-element text-center">{{repitencia.nombre_grado}}</td>
+									                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_f).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_m).toLocaleString()}}</td>
+									                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(repitencia.repitencia_total).toLocaleString()}}</b></td>
+									                    </tr>
+									                </tbody>
+									            </table>
+									        </div>
+			            				</div>
+			            			</div>
+			            		</div>
+			            	</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="row">
 	        <div class="col-xs-12 no-padding">
-	        	<div class="ficha-component-no-border-no-radius">
-		            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="repitencia_grado_collapsed = !repitencia_grado_collapsed">
-		                <h4 class="no-margins text-center noselect"><b> Repitencia Escolar por Grado y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="repitencia_grado_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!repitencia_grado_collapsed"></i></h4>
+	        	<div class="ficha-component-no-border-no-bottom" [class.title-collapsed]="docentes_collapsed" [class.container-margin-bot]="docentes_collapsed">
+		            <div class="ficha-component-title hand-on-hover" (click)="docentes_collapsed = !docentes_collapsed" [class.title-collapsed]="docentes_collapsed">
+		                <h3 class="no-margins text-center noselect"><b><i class="fa fa-area-chart"></i> Estadísticas Docentes</b><i class="fa fa-plus pull-right icon-success" *ngIf="docentes_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!docentes_collapsed"></i></h3>
 		            </div>
-		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="repitencia_grado_collapsed">
+		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="docentes_collapsed">
 		            	<div class="row">
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12">
-				            			<div class="matricula-chart">
-										    <canvas baseChart
-										            [datasets]="grado_repitencia_graph_data" 
-										            [colors]="grado_repitencia_graph_colors" 
-										            [labels]="grado_repitencia_graph_labels"
-										            [options]="grado_repitencia_graph_options"
-										            [legend]="grado_repitencia_graph_legend"
-										            [chartType]="grado_repitencia_graph_type"
-										            (chartHover)="chartHovered($event)">       
-										    </canvas>
-									  	</div>
-								  	</div>
-							  	</div>
-		            		</div>
-		            		<div class="col-lg-6">
-		            			<div class="row">
-		            				<div class="col-xs-12 extra-margin-top31">
-		            					<div class = "table-responsive">
-								            <table class="table table-bordered table-hover matricula-table table-padding">
-								                <thead>
-								                    <tr>
-								                        <th class="text-center col-md-4 matricula-table-header-element"><b>Grado</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>F</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>M</b></th>
-								                        <th class="text-center col-md-2 matricula-table-header-element"><b>Total</b></th>
-								                    </tr>
-								                </thead>
-								                <tfoot>
-						                        <tr>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>Total</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino()).toLocaleString()}}</b></td>
-						                            <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(grado_repitencia_suma_total_masculino() + grado_repitencia_suma_total_femenino()).toLocaleString()}}</b></td>
-						                        </tr>
-						                        </tfoot>
-								                <tbody>
-								                    <tr *ngFor = "let repitencia of grado_repitencia_selected">
-								                        <td class="matricula-table-element text-center">{{repitencia.nombre_grado}}</td>
-								                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_f).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center">{{(repitencia.repitencia_m).toLocaleString()}}</td>
-								                        <td class="matricula-table-element text-center matricula-table-total-cell"><b>{{(repitencia.repitencia_total).toLocaleString()}}</b></td>
-								                    </tr>
-								                </tbody>
-								            </table>
-								        </div>
-		            				</div>
-		            			</div>
+		            		<div class="col-xs-12">
+		                		<div class="level-container">
+			                		<div class="level-item-docente navy-code">
+				                		<h3 class="text-center"><i class="fa fa-pencil fa-2x"></i></h3>
+				                		<h4 class="text-center">Total Alumnos</h4>
+				                		<div class="no-margins">
+						                    <h2 class="text-center no-margins"><b>{{relacion_alumno_docente.alumnos}}</b></h2>
+						                </div>
+						            </div>
+						            <div class="level-item-docente purple-code">
+				                		<h3 class="text-center"><i class="fa fa-group fa-2x"></i></h3>
+				                		<h4 class="text-center">Relación</h4>
+				                		<h4 class="text-center">Alumno - Docente</h4>
+				                		<div class="no-margins">
+						                    <h2 class="text-center no-margins"><b>{{get_relacion_alumno_docente()}} : 1</b></h2>
+						                </div>
+						            </div>
+						            <div class="level-item-docente green-code">
+				                		<h3 class="text-center"><i class="fa fa-flask fa-2x"></i></h3>
+				                		<h4 class="text-center">Total Docentes</h4>
+				                		<div class="no-margins">
+						                    <h2 class="text-center no-margins"><b>{{relacion_alumno_docente.docentes}}</b></h2>
+						                </div>
+						            </div>
+						        </div>
 		            		</div>
 		            	</div>
 		            </div>
 		        </div>
 	        </div>
 	    </div>
+	    <div class="animated fadeIn container-margin-bot" [collapse]="docentes_collapsed">
+			<div class="row">
+		        <div class="container-margin-bot col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="docentes_edad_collapsed = !docentes_edad_collapsed">
+			                <h4 class="no-margins text-center noselect"><b>Docentes por Edades y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="docentes_edad_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!docentes_edad_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="docentes_edad_collapsed">
+			            	<div class="row">
+			            		<div class="col-lg-12">
+			            			<div class="row">
+			            				<div class="col-xs-12">
+					            			<div class="matricula-chart">
+											    <canvas baseChart
+											            [datasets]="docentes_edades_graph_data" 
+											            [colors]="docentes_edades_graph_colors" 
+											            [labels]="docentes_edades_graph_labels"
+											            [options]="docentes_edades_graph_options"
+											            [legend]="docentes_edades_graph_legend"
+											            [chartType]="docentes_edades_graph_type" 
+											            (chartHover)="chartHovered($event)">       
+											    </canvas>
+										  	</div>
+									  	</div>
+								  	</div>
+			            		</div>
+			            	</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		 </div>
 	</div>
 </div>

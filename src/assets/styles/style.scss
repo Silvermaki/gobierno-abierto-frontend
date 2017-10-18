@@ -32,7 +32,15 @@
   }
   body { overflow: visible !important; }
 
+  html, body {
+    
+  }
+
   #page-wrapper {
     margin: 0;
+  }
+
+  .no-print{
+  	display:none;
   }
 }

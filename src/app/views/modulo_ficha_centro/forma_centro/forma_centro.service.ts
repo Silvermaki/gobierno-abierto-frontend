@@ -133,6 +133,20 @@ export class FormaCentroService {
       return this.http.post(this.baseUrl+"/get_modalidades_centro", bodyString, options).map(this.extractData).catch(this.handleError);
   }
 
+  get_docentes_edad_genero(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_docentes_edad_genero", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
+  get_relacion_alumno_docente(payload: any):Observable<any>{
+      let bodyString = JSON.stringify(payload);
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(this.baseUrl+"/get_relacion_alumno_docente", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
   //Extract data as Json object
   private extractData(res:Response) {
     let body = res.json();
