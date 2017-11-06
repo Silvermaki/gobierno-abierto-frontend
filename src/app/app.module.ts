@@ -17,6 +17,8 @@ import {MatriculaModule} from "./views/modulo_estadistica/matricula/matricula.mo
 import {RendimientoModule} from "./views/modulo_estadistica/rendimiento/rendimiento.module";
 import {EstadisticaModule} from "./views/modulo_estadistica/estadistica/estadistica.module";
 import {MatriculaGeneralModule} from "./views/modulo_estadistica/reportes_matricula/matricula_general/matricula_general.module";
+import {MatriculaAdministracionModule} from "./views/modulo_estadistica/reportes_matricula/matricula_administracion/matricula_administracion.module";
+import {MatriculaModalidadModule} from "./views/modulo_estadistica/reportes_matricula/matricula_modalidad/matricula_modalidad.module";
 import {FormaCentroModule} from "./views/modulo_ficha_centro/forma_centro/forma_centro.module";
 import {FichaCentroModule} from "./views/modulo_ficha_centro/ficha_centro/ficha_centro.module";
 import {CentroFiltroModule} from "./views/modulo_ficha_centro/centro_filtro/centro_filtro.module";
@@ -38,6 +40,8 @@ import {AgmCoreModule} from '@agm/core';
     EstadisticaModule,
     MatriculaModule,
     MatriculaGeneralModule,
+    MatriculaAdministracionModule,
+    MatriculaModalidadModule,
     FormaCentroModule,
     CentroFiltroModule,
     CentroMapaModule,

@@ -12,85 +12,70 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class MatriculaGeneralService {
+export class MatriculaAdministracionService {
   //RequestService constructor: Http reference
 	constructor(private http: Http) {}
 
   //Port where the backend server is  running
-  private baseUrl: string = "http://127.0.0.1:4202/api";
+  private baseUrl: string = "http://localhost:8000";
 
   //get_matricula_general function
-  get_matricula_general_nacional(payload: any):Observable<any>{
+  get_matricula_general(payload: any):Observable<any>{
       let bodyString = JSON.stringify(payload);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_matricula_general_nacional/",bodyString, options).map(this.extractData).catch(this.handleError);
-  }
-
-  get_matricula_general_departamento(payload: any):Observable<any>{
-      let bodyString = JSON.stringify(payload);
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_matricula_general_departamento/",bodyString, options).map(this.extractData).catch(this.handleError);
-  }
-
-  get_matricula_general_municipio(payload: any):Observable<any>{
-      let bodyString = JSON.stringify(payload);
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_matricula_general_municipio/",bodyString, options).map(this.extractData).catch(this.handleError);
-  }
-
-  get_matricula_general_aldea(payload: any):Observable<any>{
-      let bodyString = JSON.stringify(payload);
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_matricula_general_aldea/",bodyString, options).map(this.extractData).catch(this.handleError);
+      return this.http.post(this.baseUrl+"/get_matricula_general_nacional",bodyString, options).map(this.extractData).catch(this.handleError);
   }
 
   get_periodos():Observable<any>{
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.get(this.baseUrl+"/AT_get_periodos/", options).map(this.extractData).catch(this.handleError);
+      return this.http.get(this.baseUrl+"/get_periodos", options).map(this.extractData).catch(this.handleError);
   }
 
   get_departamentos():Observable<any>{
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.get(this.baseUrl+"/AT_get_departamentos/", options).map(this.extractData).catch(this.handleError);
+      return this.http.get(this.baseUrl+"/get_departamentos", options).map(this.extractData).catch(this.handleError);
   }
 
   get_municipios(payload: any):Observable<any>{
       let bodyString = JSON.stringify(payload);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_municipios/",bodyString, options).map(this.extractData).catch(this.handleError);
+      return this.http.post(this.baseUrl+"/get_municipios",bodyString, options).map(this.extractData).catch(this.handleError);
   }
 
   get_aldeas(payload: any):Observable<any>{
       let bodyString = JSON.stringify(payload);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_aldeas/", bodyString, options).map(this.extractData).catch(this.handleError);
+      return this.http.post(this.baseUrl+"/get_aldeas", bodyString, options).map(this.extractData).catch(this.handleError);
+  }
+
+  get_centros():Observable<any>{
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.get(this.baseUrl+"/get_centros", options).map(this.extractData).catch(this.handleError);
   }
 
   get_niveles():Observable<any>{
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.get(this.baseUrl+"/AT_get_niveles/", options).map(this.extractData).catch(this.handleError);
+      return this.http.get(this.baseUrl+"/get_niveles", options).map(this.extractData).catch(this.handleError);
   }
 
   get_subniveles(payload: any):Observable<any>{
       let bodyString = JSON.stringify(payload);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl+"/AT_get_subniveles/", bodyString, options).map(this.extractData).catch(this.handleError);
+      return this.http.post(this.baseUrl+"/get_subniveles", bodyString, options).map(this.extractData).catch(this.handleError);
   }
 
   get_administraciones():Observable<any>{
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.get(this.baseUrl+"/AT_get_administraciones/", options).map(this.extractData).catch(this.handleError);
+      return this.http.get(this.baseUrl+"/get_administraciones", options).map(this.extractData).catch(this.handleError);
   }
 
   //Extract data as Json object

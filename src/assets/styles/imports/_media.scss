@@ -19,6 +19,13 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .extra-padding-50{
+    padding-left:50px !important;
+    padding-right:50px !important;
+  }
+}
+
 @media (max-width: 768px) {
   
   #page-wrapper {

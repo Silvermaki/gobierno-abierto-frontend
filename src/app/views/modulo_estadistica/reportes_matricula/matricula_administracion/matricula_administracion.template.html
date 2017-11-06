@@ -63,46 +63,7 @@
                 <h2 class="font-bold m-b-xs text-center">
                     Reporte de Matrícula General
                 </h2>
-                <div class="parametros-div">
-                    <form role="form" novalidate="novalidate">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Alcance</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().alcance.toLocaleString()}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Periodo</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().periodo}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Administración</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().administracion.toLocaleString()}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Nivel</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().nivel.toLocaleString()}}" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Subnivel</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().subnivel.toLocaleString()}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Departamento</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().departamento.toLocaleString()}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Municipio</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().municipio.toLocaleString()}}" readonly="true">
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label class="xs-label">Aldea</label>
-                                <input  type="text" class="form-control input-xs" value="{{returnFiltroActual().aldea.toLocaleString()}}" readonly="true">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
                 <hr>
                 <!-- No Requests -->
                 <h3 class="text-danger text-center" *ngIf="results.length == 0">No existen registros que cumplan con las especificaciones seleccionadas en el reporte.</h3>
@@ -113,7 +74,7 @@
                         <!-- Request Table Headers -->
                         <thead>
                             <tr>
-                                <th class="text-center info">Alcance</th>
+                                <th class="text-center info">Alcance del Reporte</th>
                                 <th colspan="3" class="text-center info">Prebásica</th>
                                 <th colspan="3" class="text-center info">Básica</th>
                                 <th colspan="3" class="text-center info">Media</th>
@@ -134,10 +95,28 @@
                                 <th class="text-center">F</th>
                                 <th class="text-center">M</th>
                                 <th class="text-center">Total</th>
-                                <th class="text-center">Total</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'NACIONAL'">Total Departamental</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'DEPARTAMENTO'">Total Municipio</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'MUNICIPIO'">Total Aldea</th>
+                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'ALDEA'">Total Centro</th>
 
                             </tr>
                         </thead>
+                        <tfoot>
+                        <tr>
+                            <td class="text-center warning"><b>Total</b></td>
+                            <td class="text-center warning">{{totales.prebasica_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.prebasica_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.prebasica_f + totales.prebasica_m).toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.basica_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.basica_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.basica_f + totales.basica_m).toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.media_f.toLocaleString()}}</td>
+                            <td class="text-center warning">{{totales.media_m.toLocaleString()}}</td>
+                            <td class="text-center warning">{{(totales.media_f + totales.media_m).toLocaleString()}}</td>
+                            <td class="text-center warning"><b>{{(totales.basica_f + totales.basica_m + totales.prebasica_f + totales.prebasica_m + totales.media_f + totales.media_m).toLocaleString()}}</b></td>
+                        </tr>
+                        </tfoot>
                         <!-- End Request Table Headers -->
                         <!-- Request Table Body-->
                         <tbody>
@@ -157,21 +136,7 @@
                             
                         </tbody>
                         <!-- End Request Table Body-->
-                        <tfoot>
-                        <tr>
-                            <td class="text-center warning"><b>Total</b></td>
-                            <td class="text-center warning">{{totales.prebasica_f.toLocaleString()}}</td>
-                            <td class="text-center warning">{{totales.prebasica_m.toLocaleString()}}</td>
-                            <td class="text-center warning">{{(totales.prebasica_f + totales.prebasica_m).toLocaleString()}}</td>
-                            <td class="text-center warning">{{totales.basica_f.toLocaleString()}}</td>
-                            <td class="text-center warning">{{totales.basica_m.toLocaleString()}}</td>
-                            <td class="text-center warning">{{(totales.basica_f + totales.basica_m).toLocaleString()}}</td>
-                            <td class="text-center warning">{{totales.media_f.toLocaleString()}}</td>
-                            <td class="text-center warning">{{totales.media_m.toLocaleString()}}</td>
-                            <td class="text-center warning">{{(totales.media_f + totales.media_m).toLocaleString()}}</td>
-                            <td class="text-center warning"><b>{{(totales.basica_f + totales.basica_m + totales.prebasica_f + totales.prebasica_m + totales.media_f + totales.media_m).toLocaleString()}}</b></td>
-                        </tr>
-                        </tfoot>
+                        
                     </table>
                     <!-- End Request Table -->
                 </div>

@@ -12,6 +12,11 @@
   width:100%;
 }
 
+.parametros-div{
+  margin-top:15px;
+  margin-bottom:10px;
+}
+
 .matricula-box-name {
   padding: 10px;
   border: 1px solid $border-color;
@@ -22,4 +27,27 @@
   width:100%;
   border: 1px solid $border-color;
   border-radius:5px 5px 0px 0px;
+}
+
+.matricula-filtro-box > .sk-spinner { display: none; }
+.matricula-filtro-box.sk-loading { position: relative; }
+.matricula-filtro-box.sk-loading:after {
+    content: '';
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius:5px;
+
+}
+.matricula-filtro-box.sk-loading > .sk-spinner {
+  border-radius:5px;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    z-index: 2000;
 }

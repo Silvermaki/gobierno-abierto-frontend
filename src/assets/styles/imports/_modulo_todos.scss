@@ -17,8 +17,22 @@
                                   supported by Chrome and Opera */
 }
 
+.input-xs {
+  height: 22px;
+  font-size: 12px;
+}
+
+.xs-label{
+  margin-top:5px !important;
+  font-size:12px !important;
+}
+
 .no-print{
   
+}
+
+textarea {
+    resize: none;
 }
 
 .hover-hand-border:hover{
@@ -27,6 +41,11 @@
 
 .hover-hand-border:active{
     border:0px !important;
+}
+
+.extra-padding-50{
+  padding-left:100px !important;
+  padding-right:100px !important;
 }
 
 *:focus {
@@ -91,6 +110,16 @@
   color: #fff;
 }
 
+.red-code{
+  color: #D34A45;
+}
+
+.margin-bottom-top-20{
+  margin-top:40px !important;
+  margin-bottom:20px !important;
+  text-decoration:underline;
+}
+
 .green-code{
   color: #04B486;
 }
@@ -101,6 +130,10 @@
 
 .purple-code{
   color:#AA6CE1;
+}
+
+.dark-cyan-code{
+  color:#497071;
 }
 
 .blue-code{

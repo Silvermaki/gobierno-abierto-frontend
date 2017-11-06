@@ -24,6 +24,9 @@
                     <div class="col-xs-12">
                         <h3 class="text-center"><b>Filtro de Búsqueda</b></h3>
                     </div>
+                    <div class="text-center search-button">
+                        <button type="button" class="btn btn-primary extra-margin-top" (click) = "set_filter()" [disabled]="applying_filter">Realizar Búsqueda</button>
+                    </div>
                     <div class="col-xs-12 col-sm-6 col-lg-12 animated fadeIn extra-margin-top5">
                         <div class="form-group">
                             <label>Nombre del Centro</label>
@@ -133,9 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary extra-margin-top" (click) = "set_filter()" [disabled]="applying_filter">Realizar Búsqueda</button>
-                </div>
+                
             </form>
         </div>
         <div class="col-xs-12 col-lg-8 well centro-filtro-box-results" [ngClass]="{'sk-loading':applying_filter}">

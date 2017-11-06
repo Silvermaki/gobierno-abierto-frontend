@@ -9,6 +9,8 @@ import {EstadisticaComponent} from "./views/modulo_estadistica/estadistica/estad
 import {MatriculaComponent} from "./views/modulo_estadistica/matricula/matricula.component";
 import {RendimientoComponent} from "./views/modulo_estadistica/rendimiento/rendimiento.component";
 import {MatriculaGeneralComponent} from "./views/modulo_estadistica/reportes_matricula/matricula_general/matricula_general.component";
+import {MatriculaAdministracionComponent} from "./views/modulo_estadistica/reportes_matricula/matricula_administracion/matricula_administracion.component";
+import {MatriculaModalidadComponent} from "./views/modulo_estadistica/reportes_matricula/matricula_modalidad/matricula_modalidad.component";
 import {FormaCentroComponent} from "./views/modulo_ficha_centro/forma_centro/forma_centro.component";
 import {CentroFiltroComponent} from "./views/modulo_ficha_centro/centro_filtro/centro_filtro.component";
 import {CentroMapaComponent} from "./views/modulo_ficha_centro/centro_mapa/centro_mapa.component";
@@ -26,6 +28,8 @@ export const ROUTES:Routes = [
       {path: 'rendimiento', component: RendimientoComponent},
       {path: 'empty', component: EmptyComponent},
     	{path: 'matricula_general', component:MatriculaGeneralComponent},
+      {path: 'matricula_administracion', component:MatriculaAdministracionComponent},
+      {path: 'matricula_modalidad', component:MatriculaModalidadComponent},
       {path: 'buscar_centro', component:FormaCentroComponent},
       {path: 'filtrar_centro', component:CentroFiltroComponent},
       {path: 'mapa_centros', component:CentroMapaComponent},

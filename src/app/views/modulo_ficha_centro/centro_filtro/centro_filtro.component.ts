@@ -118,7 +118,7 @@ export class CentroFiltroComponent implements OnInit{
             //store response
             data => response = data,
             err => {
-                    console.log(err);
+                    this.internalServerError();
                     this.applying_filter = false;
                     },
             ()=> {
@@ -135,6 +135,7 @@ export class CentroFiltroComponent implements OnInit{
                     }
                     this.applying_filter = false;
                 }else{
+                    this.internalServerError();
                     this.resultados = [];
                     this.applying_filter = false;
                 }
@@ -338,6 +339,15 @@ export class CentroFiltroComponent implements OnInit{
             }
         );
     }
+
+    internalServerError() {
+        swal({
+          title: "Error Interno del Servidor",
+          text: "Por favor verifique su conexión de internet o inténtelo más tarde",
+          type: "warning",
+          allowOutsideClick: false
+        }).catch(swal.noop)
+      }
 
     updateRequestsGoRight(){
         if(this.resultados.length > 0){

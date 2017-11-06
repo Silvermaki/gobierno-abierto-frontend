@@ -33,17 +33,13 @@
 	        		<h4 class="text-center collapse-item-icon"><i class="fa fa-minus-circle fa-2x"></i></h4>
 	                <h5 class="text-center no-margins">Collapsar Todo</h5>
 	            </div>
-	            <div class="menu-item pdf-item" (click)="generate_pdf()">
+	            <div class="menu-item pdf-item" (click)="ver_ficha_modal.show();generate_pdf()">
 	        		<h4 class="text-center pdf-item-icon"><i class="fa fa-file-pdf-o fa-2x"></i></h4>
-	                <h5 class="text-center no-margins">Descargar en PDF</h5>
+	                <h5 class="text-center no-margins">Ver Ficha en PDF</h5>
 	            </div>
 	            <div class="menu-item excel-item">
 	        		<h4 class="text-center excel-item-icon"><i class="fa fa-file-excel-o fa-2x"></i></h4>
 	                <h5 class="text-center no-margins">Guardar en Excel</h5>
-	            </div>
-	            <div class="menu-item print-item" >
-	        		<h4 class="text-center print-item-icon"><i class="fa fa-print fa-2x"></i></h4>
-	                <h5 class="text-center no-margins">Imprimir Ficha</h5>
 	            </div>
 	        </div>
 		</div>
@@ -134,7 +130,7 @@
 		        </div>
 	        </div>
 	    </div>
-	    <div class="container-margin-bot animated fadeIn" [collapse]="oferta_collapsed">
+	    <div class="animated fadeIn" [collapse]="oferta_collapsed">
 		    <div class="row">
 		        <div class="col-xs-12 no-padding">
 		        	<div class="ficha-component-no-border-no-radius">
@@ -144,6 +140,216 @@
 			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="modalidades_collapsed">
 		            		<div *ngFor="let modalidad of modalidades">
 		            			<h4 class="text-center"><i class="fa fa-check icon-success"></i> {{modalidad.modalidad_nombre}}</h4>
+		            		</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="animated fadeIn" [collapse]="oferta_collapsed">
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="recursos_centro_collapsed = !recursos_centro_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Oferta Educativa: Recursos  TIC</b><i class="fa fa-plus pull-right icon-success" *ngIf="recursos_centro_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!recursos_centro_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="recursos_centro_collapsed">
+		            		<div class="row">
+		            			<div class="col-sm-12">
+		            				<div class="level-container">
+	            						<div class="level-item" *ngIf="internet_alumnos && internet_alumnos.length > 0">
+					                		<h3 class="text-center navy-code"><i class="fa fa-rss fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Cuenta Con</h4>
+					                		<h4 class="text-center recursos-margin">Conectividad</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>Internet</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Alumnos</b></h4>
+							            </div>
+							            <div class="level-item" *ngIf="internet_alumnos && !internet_alumnos.length > 0">
+					                		<h3 class="text-center red-code"><i class="fa fa-question fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Información</h4>
+					                		<h4 class="text-center recursos-margin">No Disponible</h4>
+						                    <h3 class="text-center recursos-margin-title"><b>Internet</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Alumnos</b></h4>
+							            </div>
+	            						<div class="level-item" *ngIf="internet_admin && internet_admin.length > 0">
+					                		<h3 class="text-center navy-code"><i class="fa fa-rss fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Cuenta Con</h4>
+					                		<h4 class="text-center recursos-margin">Conectividad</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>Internet</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Admin.</b></h4>
+							            </div>
+	            						<div class="level-item" *ngIf="internet_admin && !internet_admin.length > 0">
+					                		<h3 class="text-center red-code"><i class="fa fa-question fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Información</h4>
+					                		<h4 class="text-center recursos-margin">No Disponible</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>Internet</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Admin.</b></h4>
+							            </div>
+							            <div class="level-item" *ngIf="computadoras_alumnos && computadoras_alumnos.length > 0">
+					                		<h3 class="text-center dark-cyan-code"><i class="fa fa-desktop fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Cuenta Con</h4>
+					                		<h4 class="text-center recursos-margin">Computadoras</h4>
+							                <h3 class="text-center recursos-margin-title"><b>{{computadoras_alumnos[0].respuesta}} PCs</b></h3>
+							                <h4 class="text-center recursos-margin"><b>para Alumnos</b></h4>
+							            </div>
+							            <div class="level-item" *ngIf="computadoras_alumnos && !computadoras_alumnos.length > 0">
+					                		<h3 class="text-center red-code"><i class="fa fa-question fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Información</h4>
+					                		<h4 class="text-center recursos-margin">No Disponible</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>PCs</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Alumnos</b></h4>
+							            </div>
+	            						<div class="level-item" *ngIf="computadoras_admin && computadoras_admin.length > 0">
+					                		<h3 class="text-center dark-cyan-code"><i class="fa fa-desktop fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Cuenta Con</h4>
+					                		<h4 class="text-center recursos-margin">Computadoras</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>{{computadoras_admin[0].respuesta}} PCs</b></h3>
+							                <h4 class="text-center recursos-margin"><b>para Admin.</b></h4>
+							            </div>
+	            						<div class="level-item" *ngIf="computadoras_admin && !computadoras_admin.length > 0">
+					                		<h3 class="text-center red-code"><i class="fa fa-question fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Información</h4>
+					                		<h4 class="text-center recursos-margin">No Disponible</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>PCs</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>para Admin.</b></h4>
+							            </div>
+							            <div class="level-item" *ngIf="aula_tecnologica && aula_tecnologica.length > 0">
+					                		<h3 class="text-center green-code"><i class="fa fa-rocket fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Cuenta Con</h4>
+					                		<h4 class="text-center recursos-margin">Recurso</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>Aula</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>Tecnológica</b></h4>
+							            </div>
+							            <div class="level-item" *ngIf="aula_tecnologica && !aula_tecnologica.length > 0">
+					                		<h3 class="text-center red-code"><i class="fa fa-question fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Información</h4>
+					                		<h4 class="text-center recursos-margin">No Disponible</h4>
+					                		<h3 class="text-center recursos-margin-title"><b>Aula</b></h3>
+						                    <h4 class="text-center recursos-margin"><b>Tecnológica</b></h4>
+							            </div>
+							        </div>
+            					</div>
+		            			<div class="col-sm-12 extra-padding-50">
+		            				<h3 class="text-center margin-bottom-top-20">Libros de Texto</h3>
+		            				<div class = "table-responsive" *ngIf="textos_centro && textos_centro.length > 0">
+							            <table class="table table-condensed table-hover table-bordered matricula-table table-padding">
+							                <thead>
+							                    <tr>
+							                        <th class="text-center col-md-6"><b>Texto</b></th>
+							                        <th class="text-center col-md-2"><b>Cantidad</b></th>
+							                    </tr>
+							                </thead>
+							                <tfoot>
+					                        </tfoot>
+							                <tbody>
+							                    <tr *ngFor = "let texto of textos_centro">
+							                        <td class="text-center">{{texto.opciones}}</td>
+							                        <td class="text-center"><b>{{(texto.respuesta).toLocaleString()}}</b></td>
+							                    </tr>
+							                </tbody>
+							            </table>
+							        </div>
+							        <div *ngIf="!textos_centro || textos_centro.length == 0">
+							        	<h4 class="text-danger text-center">Información no disponible</h4>
+							        </div>
+		            			</div>
+		            		</div>
+			            </div>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="container-margin-bot animated fadeIn" [collapse]="oferta_collapsed">
+		    <div class="row">
+		        <div class="col-xs-12 no-padding">
+		        	<div class="ficha-component-no-border-no-radius">
+			            <div class="ficha-component-title-no-border-no-radius hand-on-hover" (click)="indicadores_collapsed = !indicadores_collapsed">
+			                <h4 class="no-margins text-center noselect"><b> Indicadores de Riesgo</b><i class="fa fa-plus pull-right icon-success" *ngIf="indicadores_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!indicadores_collapsed"></i></h4>
+			            </div>
+			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="indicadores_collapsed">
+		            		<div class="row">
+		            			<div class="col-sm-12">
+		            				<div class="level-container">
+	            						<div class="level-item">
+					                		<h3 class="text-center green-code"><i class="fa fa-fire fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Bajo</b></h2>
+							                <h4 class="text-center recursos-margin">de Incendios</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center orange-code"><i class="fa fa-fire fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Medio</b></h2>
+							                <h4 class="text-center recursos-margin">de Incendios</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center red-code"><i class="fa fa-fire fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Alto</b></h2>
+							                <h4 class="text-center recursos-margin">de Incendios</h4>
+							            </div>
+							        </div>
+							        <div class="level-container">
+	            						<div class="level-item">
+					                		<h3 class="text-center green-code"><i class="fa fa-support fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Bajo</b></h2>
+							                <h4 class="text-center recursos-margin">de Inundación</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center orange-code"><i class="fa fa-support fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Medio</b></h2>
+							                <h4 class="text-center recursos-margin">de Inundación</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center red-code"><i class="fa fa-support fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Alto</b></h2>
+							                <h4 class="text-center recursos-margin">de Inundación</h4>
+							            </div>
+							        </div>
+							        <div class="level-container">
+	            						<div class="level-item">
+					                		<h3 class="text-center green-code"><i class="fa fa-bolt fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Bajo</b></h2>
+							                <h4 class="text-center recursos-margin">Falla Eléctrica</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center orange-code"><i class="fa fa-bolt fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Medio</b></h2>
+							                <h4 class="text-center recursos-margin">Falla Eléctrica</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center red-code"><i class="fa fa-bolt fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Alto</b></h2>
+							                <h4 class="text-center recursos-margin">Falla Eléctrica</h4>
+							            </div>
+							        </div>
+							        <div class="level-container">
+	            						<div class="level-item">
+					                		<h3 class="text-center green-code"><i class="fa fa-exclamation-triangle fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Bajo</b></h2>
+							                <h4 class="text-center recursos-margin">de Derrumbe</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center orange-code"><i class="fa fa-exclamation-triangle fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Medio</b></h2>
+							                <h4 class="text-center recursos-margin">de Derrumbe</h4>
+							            </div>
+							            <div class="level-item">
+					                		<h3 class="text-center red-code"><i class="fa fa-exclamation-triangle fa-2x"></i></h3>
+					                		<h4 class="text-center recursos-margin">Riesgo</h4>
+							                <h2 class="text-center recursos-margin"><b>Alto</b></h2>
+							                <h4 class="text-center recursos-margin">de Derrumbe</h4>
+							            </div>
+							        </div>
+            					</div>
 		            		</div>
 			            </div>
 			        </div>
@@ -436,7 +642,7 @@
 		            </div>
 		            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="docentes_collapsed">
 		            	<div class="row">
-		            		<div class="col-xs-12">
+		            		<div class="col-xs-12" *ngIf="docentes_edades && docentes_edades.length > 0">
 		                		<div class="level-container">
 			                		<div class="level-item-docente navy-code">
 				                		<h3 class="text-center"><i class="fa fa-pencil fa-2x"></i></h3>
@@ -462,6 +668,7 @@
 						            </div>
 						        </div>
 		            		</div>
+		            		<h3 class="text-danger text-center" *ngIf="docentes_edades.length == 0">Información no disponible</h3>
 		            	</div>
 		            </div>
 		        </div>
@@ -475,7 +682,7 @@
 			                <h4 class="no-margins text-center noselect"><b>Docentes por Edades y Género</b><i class="fa fa-plus pull-right icon-success" *ngIf="docentes_edad_collapsed"></i><i class="fa fa-minus pull-right icon-danger" *ngIf="!docentes_edad_collapsed"></i></h4>
 			            </div>
 			            <div class="ficha-component-content-no-border-no-radius animated fadeIn" [collapse]="docentes_edad_collapsed">
-			            	<div class="row">
+			            	<div class="row" >
 			            		<div class="col-lg-12">
 			            			<div class="row">
 			            				<div class="col-xs-12">
@@ -501,3 +708,20 @@
 		 </div>
 	</div>
 </div>
+<div bsModal #ver_ficha_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-center"><strong>{{centro_educativo.nombre_centro}}</strong></h2>
+            </div>
+            <div class="modal-body">
+                <iframe type="application/pdf" [src]="" class="ficha_pdf" id="ficha_frame">
+                Su explorador de internet es demasiado viejo como para mostrar el PDF. Intente descargarlo y visualizarlo en su computadora.
+                </iframe>
+                <div class="text-center ficha_pdf_button">
+                <a (click)="ver_ficha_modal.hide()" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Regresar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
