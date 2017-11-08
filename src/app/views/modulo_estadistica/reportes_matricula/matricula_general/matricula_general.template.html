@@ -63,7 +63,8 @@
                 <h2 class="font-bold m-b-xs text-center">
                     Reporte de Matrícula General
                 </h2>
-                <div class="parametros-div">
+                <h3 class="text-danger text-center extra-margin-top" *ngIf = "results <= 0">No existen registros que cumplan con las especificaciones seleccionadas en el reporte.</h3>
+                <div class="parametros-div" *ngIf="!generando_reporte">
                     <form role="form" novalidate="novalidate">
                         <div class="row">
                             <div class="col-sm-6 col-md-3">
@@ -105,9 +106,17 @@
                 </div>
                 <hr>
                 <!-- No Requests -->
-                <h3 class="text-danger text-center" *ngIf="results.length == 0">No existen registros que cumplan con las especificaciones seleccionadas en el reporte.</h3>
                 
-                <div class="table-responsive extra-margin-top" *ngIf="results.length > 0">
+                <div class="row" *ngIf="!generando_reporte">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="input-group">
+                            <input  type="text" class="form-control input-sm" [(ngModel)]="search_word" #search_input="ngModel" placeholder="Buscar...">
+                            <span class="input-group-addon search-icon" (click)="filter_search()"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="blue-text extra-margin-top-10" *ngIf="!generando_reporte">Cualquier filtro aplicado se reflejará en exportaciones a Excel y PDF.</p>
+                <div class="table-responsive extra-margin-top">
                     <!-- Request Table -->
                     <table id="tabla_reporte_matricula" class="table table-bordered table-hover">
                         <!-- Request Table Headers -->
@@ -121,20 +130,20 @@
 
                             </tr>
                             <tr>
-                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'NACIONAL'">Departamento</th>
-                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'DEPARTAMENTO'">Municipio</th>
-                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'MUNICIPIO'">Aldea</th>
-                                <th class="text-center" *ngIf="reporte_seleccionado.alcance == 'ALDEA'">Centro Educativo</th>
-                                <th class="text-center">F</th>
-                                <th class="text-center">M</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-center">F</th>
-                                <th class="text-center">M</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-center">F</th>
-                                <th class="text-center">M</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-center">Total</th>
+                                <th class="text-center centro-filtro-sort noselect" *ngIf="reporte_seleccionado.alcance == 'NACIONAL'" [ngClass]="{'centro-filtro-sort-active':sort_order=='value'}" (click)="sort_value()">Departamento <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='value', 'fa-arrow-down':!sort_ascendent && sort_order=='value', 'fa-sort':sort_order!='value'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" *ngIf="reporte_seleccionado.alcance == 'DEPARTAMENTO'" [ngClass]="{'centro-filtro-sort-active':sort_order=='value'}" (click)="sort_value()">Municipio <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='value', 'fa-arrow-down':!sort_ascendent && sort_order=='value', 'fa-sort':sort_order!='value'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" *ngIf="reporte_seleccionado.alcance == 'MUNICIPIO'" [ngClass]="{'centro-filtro-sort-active':sort_order=='value'}" (click)="sort_value()">Aldea <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='value', 'fa-arrow-down':!sort_ascendent && sort_order=='value', 'fa-sort':sort_order!='value'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" *ngIf="reporte_seleccionado.alcance == 'ALDEA'" [ngClass]="{'centro-filtro-sort-active':sort_order=='value'}" (click)="sort_value()">Centro Educativo <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='value', 'fa-arrow-down':!sort_ascendent && sort_order=='value', 'fa-sort':sort_order!='value'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='prebasica_f'}" (click)="sort_prebasica_f()">F <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='prebasica_f', 'fa-arrow-down':!sort_ascendent && sort_order=='prebasica_f', 'fa-sort':sort_order!='prebasica_f'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='prebasica_m'}" (click)="sort_prebasica_m()">M <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='prebasica_m', 'fa-arrow-down':!sort_ascendent && sort_order=='prebasica_m', 'fa-sort':sort_order!='prebasica_m'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='prebasica_t'}" (click)="sort_prebasica_t()">Total <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='prebasica_t', 'fa-arrow-down':!sort_ascendent && sort_order=='prebasica_t', 'fa-sort':sort_order!='prebasica_t'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='basica_f'}" (click)="sort_basica_f()">F <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='basica_f', 'fa-arrow-down':!sort_ascendent && sort_order=='basica_f', 'fa-sort':sort_order!='basica_f'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='basica_m'}" (click)="sort_basica_m()">M <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='basica_m', 'fa-arrow-down':!sort_ascendent && sort_order=='basica_m', 'fa-sort':sort_order!='basica_m'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='basica_t'}" (click)="sort_basica_t()">Total <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='basica_t', 'fa-arrow-down':!sort_ascendent && sort_order=='basica_t', 'fa-sort':sort_order!='basica_t'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='media_f'}" (click)="sort_media_f()">F <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='media_f', 'fa-arrow-down':!sort_ascendent && sort_order=='media_f', 'fa-sort':sort_order!='media_f'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='media_m'}" (click)="sort_media_m()">M <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='media_m', 'fa-arrow-down':!sort_ascendent && sort_order=='media_m', 'fa-sort':sort_order!='media_m'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='media_t'}" (click)="sort_media_t()">Total <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='media_t', 'fa-arrow-down':!sort_ascendent && sort_order=='media_t', 'fa-sort':sort_order!='media_t'}"></i></th>
+                                <th class="text-center centro-filtro-sort noselect" [ngClass]="{'centro-filtro-sort-active':sort_order=='total'}" (click)="sort_total()">Total <i class= "fa" [ngClass]="{'fa-arrow-up':sort_ascendent && sort_order=='total', 'fa-arrow-down':!sort_ascendent && sort_order=='total', 'fa-sort':sort_order!='total'}"></i></th>
 
                             </tr>
                         </thead>
@@ -181,10 +190,28 @@
                     Haga clic en Modificar Reporte y seleccione que datos desea desplegar.
                 </h3>
             </div>
+            <div class="col-md-12" [ngClass]="{'well':reporte_generado_valido, 'white-bg':reporte_generado_valido}">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="matricula-general-chart-tiny" [class.matricula-general-chart]="reporte_generado_valido">
+                            <canvas baseChart
+                                    [datasets]="grafico_data" 
+                                    [colors]="grafico_colors" 
+                                    [labels]="grafico_labels"
+                                    [options]="grafico_options"
+                                    [legend]="grafico_legend"
+                                    [chartType]="grafico_type"
+                                    (chartHover)="chartHovered($event)">       
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
     </div>
 </div>
+
 <div bsModal #matricula_general_modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

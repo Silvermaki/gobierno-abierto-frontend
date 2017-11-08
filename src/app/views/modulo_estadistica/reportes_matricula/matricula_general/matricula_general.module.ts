@@ -7,6 +7,7 @@ import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 //Third Party Imports
 import {LaddaModule} from 'angular2-ladda';
 import {ModalModule} from 'ngx-bootstrap';
+import {ChartsModule} from 'ng2-charts';
 
 //Component Imports
 import {MatriculaGeneralComponent} from "./matricula_general.component";
@@ -23,7 +24,8 @@ import {MatriculaGeneralService} from "./matricula_general.service";
     FormsModule,
     ReactiveFormsModule,
     LaddaModule,
-    ModalModule
+    ModalModule,
+    ChartsModule
   ],
   exports: [
     MatriculaGeneralComponent

@@ -17,6 +17,16 @@
   margin-bottom:10px;
 }
 
+.matricula-general-chart{
+  display: block;
+  min-height:1200px !important;
+}
+
+.matricula-general-chart-tiny{
+  display: block;
+  height:1px;
+}
+
 .matricula-box-name {
   padding: 10px;
   border: 1px solid $border-color;
